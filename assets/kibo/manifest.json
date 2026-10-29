@@ -1,0 +1,28 @@
+{
+  "environment_version": 6,
+  "reference_url": "https://assets.moguravr.com/uploads/2024/12/cbc87ace5d2e20ad6b3e90468aa46c73-kix.ej7onl6a7uq7-jpg.webp",
+  "design_features": [
+    "white and quilted access panels",
+    "asymmetric experiment racks and connector trays",
+    "blue restraint rails",
+    "angled overhead light strips and utility ducts",
+    "exposed hoses and patch cables",
+    "two round dark aft ports and circular equipment face",
+    "original Earth viewport and cantilevered worktop"
+  ],
+  "construction": "Original procedural geometry and generated fabric/label textures",
+  "earth_viewport_geometry_preserved": true,
+  "decorative_collisions": false,
+  "policy_camera_positions_and_intrinsics_preserved_except_far_clip": true,
+  "policy_far_clip_metres": 8,
+  "wide_view_horizontal_fov_degrees": 80,
+  "sha256": {
+    "assets/kibo/banner.png": "98efb7dc5226be791407c485b0c745eb323bc5bbfee2a526a58482b3ed6d9334",
+    "assets/kibo/decal.obj": "449ceb2a0b5e14a7d001a804298b069f659770a8c30893c531155a18ab6ec424",
+    "assets/kibo/instrument.png": "e80db402f1174b0ebbd78e4e067c55b6ba6cbbc4561848197a042b5c2fe96375",
+    "assets/kibo/quilt.png": "dbf8e1b8697c2bf2b495f6df633717024f6090a7ab08bde8efed9fd5c94ef990",
+    "assets/kibo/storage.png": "1491255cce3cec14e446de80c7fc7e293bbeaf3de4e11c9568156a4df763c7ca"
+  },
+  "banner_label": "JAKUSA",
+  "banner_label_updated": "2026-10-26"
+}

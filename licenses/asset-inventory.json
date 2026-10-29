@@ -1,0 +1,214 @@
+{
+  "checked_utc": "2026-10-26T06:25:00.837111+00:00",
+  "scope": "simulation visual assets, related fonts, and model-license metadata; not a complete software SBOM",
+  "entries": [
+    {
+      "id": "project_visual_assets",
+      "origin": "project-generated with AI assistance",
+      "license": "Apache-2.0 (project-authored material)",
+      "files": [
+        {
+          "path": "assets/floating_pen/nib.mtl",
+          "sha256": "5000154fc7afee1f1e1c82eb3f4d8341e2e17f4ce34cc9e42736cca03797bf43"
+        },
+        {
+          "path": "assets/floating_pen/nib.obj",
+          "sha256": "42b0f988e84d96fbb98d305d5ed8efbeaaf45e294affd3cf2abbfcb121e52035"
+        },
+        {
+          "path": "assets/kibo/banner.png",
+          "sha256": "98efb7dc5226be791407c485b0c745eb323bc5bbfee2a526a58482b3ed6d9334"
+        },
+        {
+          "path": "assets/kibo/instrument.png",
+          "sha256": "e80db402f1174b0ebbd78e4e067c55b6ba6cbbc4561848197a042b5c2fe96375"
+        },
+        {
+          "path": "assets/kibo/quilt.png",
+          "sha256": "dbf8e1b8697c2bf2b495f6df633717024f6090a7ab08bde8efed9fd5c94ef990"
+        },
+        {
+          "path": "assets/kibo/storage.png",
+          "sha256": "1491255cce3cec14e446de80c7fc7e293bbeaf3de4e11c9568156a4df763c7ca"
+        },
+        {
+          "path": "assets/kibo/decal.obj",
+          "sha256": "449ceb2a0b5e14a7d001a804298b069f659770a8c30893c531155a18ab6ec424"
+        }
+      ],
+      "generators": [
+        "iss_capture/cabin.py",
+        "iss_capture/world.py",
+        "iss_capture/floating_pen.py",
+        "iss_capture/pen_world.py",
+        "scripts/build_kibo_textures.py"
+      ],
+      "reference_image_bundled": false
+    },
+    {
+      "id": "so101_robot",
+      "origin": "https://github.com/TheRobotStudio/SO-ARM100",
+      "revision": "a758567c3978dfeefe282ede0500085a48fe8f78",
+      "license": "Apache-2.0",
+      "license_basis": "pinned repository LICENSE; no nested exception or NOTICE found in complete tree",
+      "files": [
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/so101_new_calib.urdf",
+          "sha256": "3a65d2d35e68a8d2f0c2cc176d19b884506543c93ba72980145b80abe276022c"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/base_motor_holder_so101_v1.stl",
+          "sha256": "8cd2f241037ea377af1191fffe0dd9d9006beea6dcc48543660ed41647072424"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/base_so101_v2.stl",
+          "sha256": "bb12b7026575e1f70ccc7240051f9d943553bf34e5128537de6cd86fae33924d"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/motor_holder_so101_base_v1.stl",
+          "sha256": "31242ae6fb59d8b15c66617b88ad8e9bded62d57c35d11c0c43a70d2f4caa95b"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/motor_holder_so101_wrist_v1.stl",
+          "sha256": "887f92e6013cb64ea3a1ab8675e92da1e0beacfd5e001f972523540545e08011"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/moving_jaw_so101_v1.stl",
+          "sha256": "785a9dded2f474bc1d869e0d3dae398a3dcd9c0c345640040472210d2861fa9d"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/rotation_pitch_so101_v1.stl",
+          "sha256": "9be900cc2a2bf718102841ef82ef8d2873842427648092c8ed2ca1e2ef4ffa34"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/sts3215_03a_no_horn_v1.stl",
+          "sha256": "75ef3781b752e4065891aea855e34dc161a38a549549cd0970cedd07eae6f887"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/sts3215_03a_v1.stl",
+          "sha256": "a37c871fb502483ab96c256baf457d36f2e97afc9205313d9c5ab275ef941cd0"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/under_arm_so101_v1.stl",
+          "sha256": "d01d1f2de365651dcad9d6669e94ff87ff7652b5bb2d10752a66a456a86dbc71"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/upper_arm_so101_v1.stl",
+          "sha256": "475056e03a17e71919b82fd88ab9a0b898ab50164f2a7943652a6b2941bb2d4f"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/waveshare_mounting_plate_so101_v2.stl",
+          "sha256": "e197e24005a07d01bbc06a8c42311664eaeda415bf859f68fa247884d0f1a6e9"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/wrist_roll_follower_so101_v1.stl",
+          "sha256": "4b17b410a12d64ec39554abc3e8054d8a97384b2dc4a8d95a5ecb2a93670f5f4"
+        },
+        {
+          "path": "third_party/SO-ARM100/Simulation/SO101/assets/wrist_roll_pitch_so101_v2.stl",
+          "sha256": "6c7ec5525b4d8b9e397a30ab4bb0037156a5d5f38a4adf2c7d943d6c56eda5ae"
+        }
+      ],
+      "all_files_match_source_manifest": true,
+      "license_file": "third_party/SO-ARM100/LICENSE"
+    },
+    {
+      "id": "robot_training_palette",
+      "origin": "project extraction of colors from SO-101-derived training scene",
+      "related_license": "Apache-2.0",
+      "files": [
+        {
+          "path": "assets/so101_training_materials.json",
+          "sha256": "8a1bd3e45b87ff6a031542e595acd5bb2322fb6ae0aa9a0198bd907127d2bea7"
+        }
+      ]
+    },
+    {
+      "id": "gazebo_skybox",
+      "origin": "https://github.com/gazebosim/gz-rendering",
+      "revision": "f1249da6e07f0d6b7adaba28109fa7af727fd322",
+      "version": "8.2.3",
+      "license": "Apache-2.0 (repository declaration)",
+      "asset_specific_notice_found": false,
+      "files": [
+        {
+          "path": "/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz/gz-rendering8/ogre2/media/materials/textures/skybox.dds",
+          "sha256": "eccb5d7228f8ef03076d7644c13f57b23ea10966733ebd0820d233b45466e170"
+        }
+      ],
+      "license_file": "licenses/gz-rendering-8.2.3-LICENSE.txt",
+      "redistributed_in_project": false
+    },
+    {
+      "id": "dejavu_label_fonts",
+      "origin": "https://dejavu-fonts.github.io/License.html",
+      "version": "2.37-8",
+      "license": "Bitstream Vera and Arev conditions; DejaVu changes public domain",
+      "files": [
+        {
+          "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+          "sha256": "ae7b7855e115a5966d8b1b3f80f254ccc117ec86f9965e202ee2940453837280"
+        },
+        {
+          "path": "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+          "sha256": "5c1247acef7f2b8522a31742c76d6adcb5569bacc0be7ceaa4dc39dd252ce895"
+        }
+      ],
+      "font_binaries_bundled": false
+    },
+    {
+      "id": "noto_diagram_font",
+      "origin": "https://github.com/notofonts/noto-cjk",
+      "version": "fonts-noto-cjk 1:20230817+repack1-3",
+      "license": "OFL-1.1",
+      "files": [
+        {
+          "path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+          "sha256": "b76b0433203017ca80401b2ee0dd69350349871c4b19d504c34dbdd80541690a"
+        }
+      ],
+      "font_binaries_bundled": false
+    },
+    {
+      "id": "reference_image",
+      "origin": "https://assets.moguravr.com/uploads/2024/12/cbc87ace5d2e20ad6b3e90468aa46c73-kix.ej7onl6a7uq7-jpg.webp",
+      "license": "NOASSERTION",
+      "runtime_asset": false,
+      "bundled": false,
+      "note": "Reference-only; republication rights not verified."
+    },
+    {
+      "id": "banner_label",
+      "origin": "project-rendered typography, not an imported official-logo bitmap",
+      "license": "Apache-2.0 (project-authored material)",
+      "files": [
+        {
+          "path": "assets/kibo/banner.png",
+          "sha256": "98efb7dc5226be791407c485b0c745eb323bc5bbfee2a526a58482b3ed6d9334"
+        }
+      ],
+      "note": "Changed from JAXA to the user-requested JAKUSA label on 2026-10-26. Generated typography; no official-logo image is used.",
+      "label": "JAKUSA"
+    },
+    {
+      "id": "smolvla_base",
+      "origin": "https://huggingface.co/lerobot/smolvla_base",
+      "revision": "5e8d12a6e2975b0e5e5fce7c8caf47c371d257b6",
+      "license": "Apache-2.0 (pinned model-card metadata)",
+      "evidence": "licenses/evidence/smolvla_base/README.md",
+      "evidence_sha256": "1c4eab155e159a5fd3fd6c4d5f770c43f056665d73e11c0584e47f8b824d3c98",
+      "separate_license_notice_files": []
+    },
+    {
+      "id": "smolvlm_processor",
+      "origin": "https://huggingface.co/HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+      "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+      "license": "Apache-2.0 (pinned model-card metadata)",
+      "evidence": "licenses/evidence/smolvlm_processor/README.md",
+      "evidence_sha256": "afc4bf5f519438b221a84292979a9eac3de4b9726e5baaa82033c55f59f9f7a5",
+      "separate_license_notice_files": []
+    }
+  ],
+  "asset_updated_date": "2026-10-26",
+  "public_distribution_note": "Only the follower URDF and its 13 referenced STL meshes are included; upstream license and source attribution retained."
+}

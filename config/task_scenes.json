@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "description": "Task-specific object layouts; metres in the shared world frame. Both arms remain on the same table edge.",
+  "tasks": {
+    "task1": {
+      "objects": ["droplet"],
+      "sponge_side": "right",
+      "sponge_grasp": true,
+      "sponge_size": [0.018, 0.030, 0.024],
+      "water_position": [0.29, 0.0, 0.27],
+      "water_velocity": [0.0, 0.0, 0.006],
+      "instruction": "Use the sponge on the right arm to catch the rising water droplet between the arms. Let the droplet adhere to the sponge. Keep the left arm still."
+    },
+    "task2": {
+      "objects": ["floating_pen"],
+      "sponge_side": null,
+      "pen_position": [0.29, 0.0, 0.255],
+      "instruction": "Catch the rotating orange pen between the arms with the left gripper and hold it securely. Keep the right arm still."
+    },
+    "task3": {
+      "objects": ["floating_pen", "floating_cap"],
+      "sponge_side": null,
+      "pen_position": [0.29, 0.035, 0.245],
+      "cap_position": [0.29, -0.035, 0.335],
+      "instruction": "Catch the floating orange pen with the left gripper and the blue cap with the right gripper. Align the cap opening with the pen tip, insert the pen tip into the cap, and hold both steadily."
+    }
+  }
+}

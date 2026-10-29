@@ -1,0 +1,76 @@
+{
+  "description": "Frozen rendered material colors from the training/validated Ubuntu 22.04 scenes; appearance only, no geometry change.",
+  "reference_scene": "runs/vla_validation_20261025T122606Z_35e33d/center/scene/moving_droplet.sdf",
+  "reference_scene_sha256": "70f8418ce6a1cca9bd499c283b175ea7d5ac9028e40b8f56531a1ee08aab10cf",
+  "urdf_sha256": "3a65d2d35e68a8d2f0c2cc176d19b884506543c93ba72980145b80abe276022c",
+  "materials": {
+    "base_link/base_link_visual": {
+      "ambient": "1 1 0.149999991 1",
+      "diffuse": "1 1 0.149999991 1"
+    },
+    "base_link/base_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "base_link/base_link_visual_2": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "base_link/base_link_visual_3": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "shoulder_link/shoulder_link_visual": {
+      "ambient": "0.125 0.125 0.125 1",
+      "diffuse": "0.125 0.125 0.125 1"
+    },
+    "shoulder_link/shoulder_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "shoulder_link/shoulder_link_visual_2": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "upper_arm_link/upper_arm_link_visual": {
+      "ambient": "0.125 0.125 0.125 1",
+      "diffuse": "0.125 0.125 0.125 1"
+    },
+    "upper_arm_link/upper_arm_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "lower_arm_link/lower_arm_link_visual": {
+      "ambient": "1 1 0.149999991 1",
+      "diffuse": "1 1 0.149999991 1"
+    },
+    "lower_arm_link/lower_arm_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "lower_arm_link/lower_arm_link_visual_2": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "wrist_link/wrist_link_visual": {
+      "ambient": "0.125 0.125 0.125 1",
+      "diffuse": "0.125 0.125 0.125 1"
+    },
+    "wrist_link/wrist_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "gripper_link/gripper_link_visual": {
+      "ambient": "0.125 0.125 0.125 1",
+      "diffuse": "0.125 0.125 0.125 1"
+    },
+    "gripper_link/gripper_link_visual_1": {
+      "ambient": "0 0 0 1",
+      "diffuse": "0 0 0 1"
+    },
+    "moving_jaw_so101_v1_link/moving_jaw_so101_v1_link_visual": {
+      "ambient": "1 1 0.149999991 1",
+      "diffuse": "1 1 0.149999991 1"
+    }
+  }
+}

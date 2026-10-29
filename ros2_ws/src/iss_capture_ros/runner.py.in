@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+import os
+import sys
+root = '@ISS_PROJECT_ROOT@'
+python = root + '/.venv-vla/bin/python'
+os.chdir(root)
+os.environ.setdefault('ROS_DOMAIN_ID', '93')
+os.environ.setdefault('HF_HUB_OFFLINE', '1')
+os.environ.setdefault('TOKENIZERS_PARALLELISM', 'false')
+os.environ.setdefault('ROS_AUTOMATIC_DISCOVERY_RANGE', 'LOCALHOST')
+os.environ.setdefault('QT_QPA_PLATFORM', 'xcb')
+if os.path.exists('/dev/dxg'):
+    os.environ.setdefault('GALLIUM_DRIVER', 'd3d12')
+    os.environ.setdefault('MESA_D3D12_DEFAULT_ADAPTER_NAME', 'NVIDIA')
+os.execv(python, [python, root + '/@ISS_RUNNER@', @ISS_EXTRA_ARGS@ *sys.argv[1:]])

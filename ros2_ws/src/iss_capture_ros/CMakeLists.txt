@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.20)
+project(iss_capture_ros)
+find_package(ament_cmake REQUIRED)
+get_filename_component(ISS_PROJECT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../../.." ABSOLUTE)
+set(ISS_RUNNER run_biarm_policy.py)
+set(ISS_EXTRA_ARGS "")
+configure_file(runner.py.in "${CMAKE_CURRENT_BINARY_DIR}/one_policy" @ONLY)
+file(CHMOD "${CMAKE_CURRENT_BINARY_DIR}/one_policy"
+  PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
+install(PROGRAMS "${CMAKE_CURRENT_BINARY_DIR}/one_policy" DESTINATION lib/${PROJECT_NAME})
+install(FILES launch/one_policy.launch.py DESTINATION share/${PROJECT_NAME}/launch)
+ament_package()

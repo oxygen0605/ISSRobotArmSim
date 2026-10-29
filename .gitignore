@@ -1,0 +1,24 @@
+# Dependencies and downloaded upstream models
+.venv/
+.venv-vla
+.cache/
+models
+# Generated simulator/build/output files
+build/
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+runs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+# Training data and intermediate checkpoints
+datasets/
+artifacts/*
+!artifacts/smolvla_one_policy/
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
