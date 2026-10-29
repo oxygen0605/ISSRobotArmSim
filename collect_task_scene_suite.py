@@ -6,9 +6,12 @@ from iss_capture.unified_config import ROOT
 from iss_capture.scene_training_cases import SPLITS,write_splits
 
 p=argparse.ArgumentParser();p.add_argument('--train-count',type=int,default=8)
-p.add_argument('--validation-count',type=int,default=3);a=p.parse_args()
+p.add_argument('--validation-count',type=int,default=3)
+p.add_argument('--output-root',type=Path,default=ROOT/'datasets/task_scenes_v1',help='Directory for newly collected episodes')
+a=p.parse_args()
 assert 0<a.train_count<=SPLITS['train'][1] and 0<a.validation_count<=SPLITS['validation'][1]
-write_splits();root=ROOT/'datasets/task_scenes_v1';root.mkdir(parents=True,exist_ok=True)
+write_splits();root=a.output_root.resolve();root.mkdir(parents=True,exist_ok=True)
+(ROOT/'progress').mkdir(parents=True,exist_ok=True)
 jobs=[(split,task,seed) for split,count in [('validation',a.validation_count),('train',a.train_count)]
       for seed in range(SPLITS[split][0],SPLITS[split][0]+count) for task in ('task1','task2','task3')]
 results=[]

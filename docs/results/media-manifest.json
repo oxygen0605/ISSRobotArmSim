@@ -1,0 +1,171 @@
+{
+  "source_run": "opposite_camera_banner_margin_20261029",
+  "timing": "1x simulation time; GIF 10 fps; no additional end pause",
+  "grid": [
+    "front, opposite",
+    "side, overview"
+  ],
+  "tasks": [
+    {
+      "task": "task1",
+      "seed": 3300002,
+      "success": true,
+      "steps": 12,
+      "instruction": "Use the sponge on the right arm to catch the rising water droplet between the arms. Let the droplet adhere to the sponge. Keep the left arm still.",
+      "adapter_sha256": "71feb40f6166a43a451fe7149af929c2760e1431935acb41b56cc4ba0dcfdc0d",
+      "head_sha256": "dae51f1d2b5c139cb40e44f58b70edbcc7dc8b48a55cd561cb732451607c952f",
+      "videos": {
+        "front": {
+          "file": "task1-front.mp4",
+          "sha256": "40a51a33e2d569f29097f812640ec9fc5946bff885da598adfb61310c6e47e4a",
+          "duration_seconds": 2.366667
+        },
+        "opposite": {
+          "file": "task1-opposite.mp4",
+          "sha256": "a83c7ffa5d28c7ed163a3f4fbdb37a7b42c801a53ad3f64d5cf3df1dd724c784",
+          "duration_seconds": 2.366667
+        },
+        "side": {
+          "file": "task1-side.mp4",
+          "sha256": "142405f95547f5e2396f31d4acdeef13277947dc4b00dd61dfa3fde0477b49a0",
+          "duration_seconds": 2.366667
+        },
+        "overview": {
+          "file": "task1-overview.mp4",
+          "sha256": "ab6e7a9e94ec4736158665cc5f90de873dcb7b897d32eef1ce0d8ea21455a6b8",
+          "duration_seconds": 2.366667
+        },
+        "front_depth": {
+          "file": "task1-front_depth.mp4",
+          "sha256": "5a733d0b3d726b39e8010d9f66cdddecfd1de91e63e2e3fbf292a2bff48b3bc6",
+          "duration_seconds": 2.366667
+        },
+        "side_depth": {
+          "file": "task1-side_depth.mp4",
+          "sha256": "92818867977e4dbdba050f9f86ebd8c400dc5e04d0b60b3137d0ecffe7bda2e1",
+          "duration_seconds": 2.366667
+        }
+      },
+      "gif": {
+        "file": "task1-four-views-1x.gif",
+        "sha256": "30dc9f38e22817cecb19bf1ad426b8ef6c8f42f1f7ba46ad698767996dcb8829",
+        "bytes": 882930,
+        "frames": 24,
+        "duration_seconds": 2.4,
+        "width": 1024,
+        "height": 1088
+      }
+    },
+    {
+      "task": "task2",
+      "seed": 3300002,
+      "success": true,
+      "steps": 54,
+      "instruction": "Catch the rotating orange pen between the arms with the left gripper and hold it securely. Keep the right arm still.",
+      "adapter_sha256": "71feb40f6166a43a451fe7149af929c2760e1431935acb41b56cc4ba0dcfdc0d",
+      "head_sha256": "dae51f1d2b5c139cb40e44f58b70edbcc7dc8b48a55cd561cb732451607c952f",
+      "videos": {
+        "front": {
+          "file": "task2-front.mp4",
+          "sha256": "170378c2d0b9d1b6bd97d50dfa8af2ca21d39605f666a95bea543718f8eacf20",
+          "duration_seconds": 6.566667
+        },
+        "opposite": {
+          "file": "task2-opposite.mp4",
+          "sha256": "738d95cd480c8433aed21bdef74e371a06b3a4ce41f8a14058b0ed60b80da2fe",
+          "duration_seconds": 6.566667
+        },
+        "side": {
+          "file": "task2-side.mp4",
+          "sha256": "453188fbd88da150e996591bcbf172a57008f02104a6ee1345d59a735ed50a29",
+          "duration_seconds": 6.566667
+        },
+        "overview": {
+          "file": "task2-overview.mp4",
+          "sha256": "9013e3c4819040d83f5472048307c4405f25b1df63a77655f0b65f5c1404f428",
+          "duration_seconds": 6.566667
+        },
+        "front_depth": {
+          "file": "task2-front_depth.mp4",
+          "sha256": "a45f213bf816f3608736afd3e4c5babebc1848a18c97aae877fe2868c10ab073",
+          "duration_seconds": 6.566667
+        },
+        "side_depth": {
+          "file": "task2-side_depth.mp4",
+          "sha256": "72447b2fba42702fa64b29ac241f8712e308b6b706789a59e0c016e517cc2a1b",
+          "duration_seconds": 6.566667
+        }
+      },
+      "gif": {
+        "file": "task2-four-views-1x.gif",
+        "sha256": "d82cc12abc2ff70967a327b3ed5262b143d8fa017734d26ed1e5163c81373e75",
+        "bytes": 2226287,
+        "frames": 66,
+        "duration_seconds": 6.6,
+        "width": 1024,
+        "height": 1088
+      }
+    },
+    {
+      "task": "task3",
+      "seed": 3300002,
+      "success": true,
+      "steps": 98,
+      "instruction": "Catch the floating orange pen with the left gripper and the blue cap with the right gripper. Align the cap opening with the pen tip, insert the pen tip into the cap, and hold both steadily.",
+      "adapter_sha256": "71feb40f6166a43a451fe7149af929c2760e1431935acb41b56cc4ba0dcfdc0d",
+      "head_sha256": "dae51f1d2b5c139cb40e44f58b70edbcc7dc8b48a55cd561cb732451607c952f",
+      "videos": {
+        "front": {
+          "file": "task3-front.mp4",
+          "sha256": "5d03f3dde536409845cfbabd766ec6effae0c81b939dd368a6a71d4f3c42f2a5",
+          "duration_seconds": 10.966667
+        },
+        "opposite": {
+          "file": "task3-opposite.mp4",
+          "sha256": "22797e8429559e3f9f20301c147da8f84e3b4724db0ecdaabd05c6db7cbaa245",
+          "duration_seconds": 10.966667
+        },
+        "side": {
+          "file": "task3-side.mp4",
+          "sha256": "77771b39b1f5a0f47167eed412a34740c57f23b5a16312f91f493a1966b3c2b3",
+          "duration_seconds": 10.966667
+        },
+        "overview": {
+          "file": "task3-overview.mp4",
+          "sha256": "7864e54bf230fd5374782424b9763bdf0be13040caf7712a03a923c3df862004",
+          "duration_seconds": 10.966667
+        },
+        "front_depth": {
+          "file": "task3-front_depth.mp4",
+          "sha256": "6709753f81c8c17b012822b6ec59cacad0eb9ee36d470d3aa0c16de806759361",
+          "duration_seconds": 10.966667
+        },
+        "side_depth": {
+          "file": "task3-side_depth.mp4",
+          "sha256": "95a34f14581aca045826cb9b4fe52dcc418dc44962205d71beebf98df1195bb2",
+          "duration_seconds": 10.966667
+        }
+      },
+      "gif": {
+        "file": "task3-four-views-1x.gif",
+        "sha256": "2d1c3f80ac8f6a20416d02ec1728a40d95f84c2ef3d370210a353b575bce8ad8",
+        "bytes": 5497968,
+        "frames": 110,
+        "duration_seconds": 11.0,
+        "width": 1024,
+        "height": 1088
+      }
+    }
+  ],
+  "failure_example": {
+    "task": "task3",
+    "seed": 4400006,
+    "success": false,
+    "description": "Both objects held, insertion stopped at approximately 0.96 mm; older three-camera evaluation recording.",
+    "files": {
+      "failed-task3-4400006-front.mp4": "fd6079c5f215c35d74ed397901c84ef07c7a8581f0df878ad6f3b84039dd5343",
+      "failed-task3-4400006-side.mp4": "005f54c8db1aa125d79192c5408d276f315ed921458339e8e9893eedbe4ac763",
+      "failed-task3-4400006-overview.mp4": "7b119329d4deccc86e79346fec3fd1e0dbffa232df29995877465b90cf22732e"
+    }
+  }
+}

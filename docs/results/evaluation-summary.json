@@ -1,0 +1,111 @@
+{
+  "source_evaluation": "task_scene_final_test_v2",
+  "split": "test",
+  "test_used_for_training_or_selection": false,
+  "tasks": {
+    "task1": {
+      "attempts": 4,
+      "successes": 4,
+      "errors": 0
+    },
+    "task2": {
+      "attempts": 4,
+      "successes": 4,
+      "errors": 0
+    },
+    "task3": {
+      "attempts": 4,
+      "successes": 3,
+      "errors": 0
+    }
+  },
+  "results": [
+    {
+      "task": "task1",
+      "success": true,
+      "steps": 11,
+      "error": null,
+      "seed": 4400004
+    },
+    {
+      "task": "task1",
+      "success": true,
+      "steps": 12,
+      "error": null,
+      "seed": 4400005
+    },
+    {
+      "task": "task1",
+      "success": true,
+      "steps": 12,
+      "error": null,
+      "seed": 4400006
+    },
+    {
+      "task": "task1",
+      "success": true,
+      "steps": 12,
+      "error": null,
+      "seed": 4400007
+    },
+    {
+      "task": "task2",
+      "success": true,
+      "steps": 32,
+      "error": null,
+      "seed": 4400004
+    },
+    {
+      "task": "task2",
+      "success": true,
+      "steps": 35,
+      "error": null,
+      "seed": 4400005
+    },
+    {
+      "task": "task2",
+      "success": true,
+      "steps": 72,
+      "error": null,
+      "seed": 4400006
+    },
+    {
+      "task": "task2",
+      "success": true,
+      "steps": 57,
+      "error": null,
+      "seed": 4400007
+    },
+    {
+      "task": "task3",
+      "success": true,
+      "steps": 119,
+      "error": null,
+      "seed": 4400004
+    },
+    {
+      "task": "task3",
+      "success": true,
+      "steps": 104,
+      "error": null,
+      "seed": 4400005
+    },
+    {
+      "task": "task3",
+      "success": false,
+      "steps": 220,
+      "error": null,
+      "seed": 4400006
+    },
+    {
+      "task": "task3",
+      "success": true,
+      "steps": 115,
+      "error": null,
+      "seed": 4400007
+    }
+  ],
+  "adapter_sha256": "71feb40f6166a43a451fe7149af929c2760e1431935acb41b56cc4ba0dcfdc0d",
+  "head_sha256": "dae51f1d2b5c139cb40e44f58b70edbcc7dc8b48a55cd561cb732451607c952f",
+  "note": "These test cases are separate from the successful README video examples."
+}

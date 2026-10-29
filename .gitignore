@@ -22,3 +22,7 @@ artifacts/*
 !.env.example
 *.pem
 *.key
+
+# Locally generated collection status and seed manifest
+progress/
+data_splits/task_scene_cases_v1.json
