@@ -42,14 +42,18 @@ def run(policy, output, task, spec, case, max_steps=120, gui=False, record=True,
     configure_observation(policy, spec, case)
     begin = end = None
     try:
-        with SceneSession(output, case, spec, gui=gui, record=record) as session:
+        with SceneSession(output, case, spec, gui=gui, record=record, use_depth=not getattr(policy,'rgb_only',False)) as session:
             client = session.client
             begin = client.snapshot()[1]
             for index in range(max_steps):
                 observation = client.camera_observation()
                 recording.observe(observation)
                 try:
-                    command, debug = policy.predict(observation, spec['instruction'])
+                    model_input = observation
+                    if getattr(policy,'rgb_only',False):
+                        from iss_capture.rgb_joint_policy import select_inputs
+                        model_input = select_inputs(observation,policy.config.get('positions_only',False))
+                    command, debug = policy.predict(model_input, spec['instruction'])
                 except Exception as exception:
                     error = dict(kind='policy_observation_or_inference_error', message=str(exception),
                                  traceback=traceback.format_exc())
@@ -63,7 +67,7 @@ def run(policy, output, task, spec, case, max_steps=120, gui=False, record=True,
                 objects.append(client.object_states())
                 if index % 20 == 0:
                     save(output / 'live_trace.json', trace)
-                    phase = policy.config['phase_names'][int(np.argmax(debug['phase_probabilities']))]
+                    phase = policy.config['phase_names'][int(np.argmax(debug['phase_probabilities']))] if 'phase_probabilities' in debug else 'learned_'+policy.config.get('action_mode','joint')
                     print(json.dumps(dict(task=task, step=index, phase=phase, **metric)), flush=True)
                 if monitor.success:
                     break
@@ -89,6 +93,13 @@ def run(policy, output, task, spec, case, max_steps=120, gui=False, record=True,
         observation_adapter='Absent object geometry is zero-filled with zero confidence; present objects use RGB-D. Nominal scene positions initialize search regions only.',
         known_limit=('Shared learned language/stage/goal head with calibrated RGB-D geometry and generic IK; idealized transparent-water depth.' if policy.config.get('policy_variant')=='shared_three_task_smolvla_task_scenes_v1' else 'Existing action head routes water goals to the left arm. Right-arm water behavior was not trained or remapped.'),
         wall_seconds=time.monotonic()-started, simulated_seconds=None if begin is None or end is None else end-begin)
+    if getattr(policy,'rgb_only',False):
+        result.update(retrained=True,depth_used=False,depth_sensors_enabled=False,geometry_features_used=False,
+            observation_adapter='RGB images and raw encoder state only; language instruction',
+            known_limit=('SmolVLA Cartesian goals and generic robot IK; no privileged geometry or contact input' if policy.config.get('action_mode')=='cartesian' else 'Direct SmolVLA joint actions; no privileged geometry or contact input'))
+    if policy.config.get('policy_variant')=='smolvla_rgb_joint_language_temporal_v1':
+        result['known_limit']='SmolVLA with a learned GRU action readout; RGB and encoder history only; no depth or object-geometry input'
+        result['learned_temporal_readout']=True
     save(output / 'result.json', result)
     save(output / 'trace.json', trace)
     save(output / 'metrics.json', monitor.samples)
@@ -113,6 +124,7 @@ def main():
     parser.add_argument('--output', type=Path)
     parser.add_argument('--max-steps', type=int, default=120)
     parser.add_argument('--gui', action='store_true')
+    parser.add_argument('--no-record', action='store_true', help='Evaluate without saving camera videos')
     args = parser.parse_args()
     if args.max_steps < 1:
         parser.error('--max-steps must be positive')
@@ -129,7 +141,7 @@ def main():
     results = []
     for task in tasks:
         spec, case = scenes[task]
-        results.append(run(policy, output/task, task, spec, case, args.max_steps, args.gui))
+        results.append(run(policy, output/task, task, spec, case, args.max_steps, args.gui, record=not args.no_record))
         save(output/'summary.json', results)
     after = file_hashes([*sources, *args.checkpoint.iterdir()])
     if before != after:

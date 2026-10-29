@@ -15,6 +15,7 @@ from run_demo import stop_process
 
 class Client(BimanualClient):
     def __init__(self,*args,**kwargs):
+        self.use_depth=kwargs.pop('use_depth',True)
         self.capture_recoveries=[]
         self.water_contact=False;self.water_contact_time=None;self.depth_frames={n:deque(maxlen=16) for n in ('front','side')}
         super().__init__(*args,**kwargs)
@@ -26,7 +27,7 @@ class Client(BimanualClient):
         entries.append(dict(topic_name='/camera/capture',ros_type_name='std_msgs/msg/Bool',gz_type_name='gz.msgs.Boolean',direction='ROS_TO_GZ'))
         entries.append(dict(topic_name='/capture/contacts',ros_type_name='ros_gz_interfaces/msg/Contacts',
             gz_type_name='gz.msgs.Contacts',direction='GZ_TO_ROS',qos_profile='SENSOR_DATA'))
-        for name in ('front','side'):
+        for name in (('front','side') if self.use_depth else ()):
             topic='/camera/'+name+'/depth'
             entries.append(dict(topic_name=topic,ros_type_name='sensor_msgs/msg/Image',gz_type_name='gz.msgs.Image',direction='GZ_TO_ROS',qos_profile='SENSOR_DATA'))
             self.subscribe(Image,topic,lambda msg,n=name:self._depth(n,msg))
@@ -67,6 +68,8 @@ class Client(BimanualClient):
         values=np.frombuffer(message.data,dtype=dtype).reshape(message.height,message.step//4)[:,:message.width].astype(np.float32)
         with self.lock:self.depth_frames[name].append((stamp_seconds(message.header.stamp),values))
     def synchronized_observation(self):
+        if not self.use_depth:
+            return super().synchronized_observation()
         with self.lock:
             if not self.joint_history or any(not f for f in self.frames.values()) or any(not f for f in self.depth_frames.values()):return None
             choices=[]

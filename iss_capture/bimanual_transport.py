@@ -22,6 +22,7 @@ from scipy.spatial.transform import Rotation
 from .ros_transport import ROSMovingClient,bridge_config,stamp_seconds,rgb_image
 from .bimanual_config import *
 from .trajectory_timing import group_times,arm_schedule_indices
+from .encoder_alignment import aligned_encoders
 
 class BimanualClient(ROSMovingClient):
     def __init__(self,output,control_spec,synchronize_observations=False):
@@ -77,14 +78,12 @@ class BimanualClient(ROSMovingClient):
                    for st,side in list(self.frames['side'])[-6:] if abs(ft-st)<.002]
             if not pairs:return None
             stamp,front,side=max(pairs,key=lambda pair:pair[0])
-            history=list(self.joint_history);times=np.array([v[0] for v in history])
-            hi=min(len(history)-1,int(np.searchsorted(times,stamp)))
-            lo=max(0,hi-1)
-            weight=np.clip((stamp-times[lo])/max(times[hi]-times[lo],1e-9),0,1)
-            q=history[lo][1]*(1-weight)+history[hi][1]*weight
+            aligned=aligned_encoders(list(self.joint_history),stamp)
+            if aligned is None:return None
+            q,velocity=aligned
             previous=min(self.frames['front'],key=lambda f:abs(f[0]-(stamp-.2)))
             commands=[target for t,target in self.command_history if t<=stamp+1e-6]
-            return dict(front=front.copy(),side=side.copy(),previous_front=previous[1].copy(),q=q.copy(),
+            return dict(front=front.copy(),side=side.copy(),previous_front=previous[1].copy(),q=q.copy(),q_velocity=velocity.copy(),
                 previous_command=commands[-1].copy() if commands else q.copy(),
                 sim_time=stamp,image_time=stamp,previous_image_time=previous[0],
                 controller_time=self.sim_time,encoder_image_alignment=True)
@@ -96,10 +95,10 @@ class BimanualClient(ROSMovingClient):
         if not np.isfinite(q).all():return
         with self.lock:
             self.positions=q;self.sim_time=stamp_seconds(message.header.stamp);self.updated_at=time.monotonic()
-            self.joint_history.append((self.sim_time,q.copy()))
             if len(message.velocity)==len(message.name):
                 vel=dict(zip(message.name,message.velocity))
                 self.joint_velocities=np.array([vel[n] for n in JOINT_NAMES]);self.max_joint_velocity=np.maximum(self.max_joint_velocity,np.abs(self.joint_velocities))
+            self.joint_history.append((self.sim_time,q.copy(),self.joint_velocities.copy()))
 
     def _poses(self,message):
         for trans in message.transforms:

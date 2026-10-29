@@ -69,6 +69,7 @@ class SceneRGB(Features):
 
 def configure_observation(policy, spec, case):
     policy.reset()
+    if getattr(policy,'rgb_only',False):return
     # Use nominal configured search regions, never jittered evaluation poses.
     search_case = {**case, **{key: spec[key] for key in ('water_position','pen_position','cap_position') if key in spec}}
     water = OptionalWater(spec, search_case)
@@ -80,6 +81,7 @@ def configure_observation(policy, spec, case):
 
 
 def observation_audit(policy):
+    if getattr(policy,'rgb_only',False):return dict(depth_used=False,geometry_features_used=False,state_source='raw joint encoders')
     geometry = policy.features.depth.last_geometry or {}
     return {kind: {'points': value.get('points', 0), 'stale': value.get('stale', False),
                    'present': value.get('present', True)} for kind, value in geometry.items()}

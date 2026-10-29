@@ -251,10 +251,18 @@ class SceneClient(Client):
 
 
 class SceneSession(SharedSession):
-    def __init__(self, output, case, spec, gui=False, record=False):
+    def __init__(self, output, case, spec, gui=False, record=False, use_depth=True):
         self.output = Path(output)
         self.output.mkdir(parents=True, exist_ok=True)
         self.world, self.manifest = build_scene(self.output / 'scene', case, spec, record=record)
+        self.use_depth = use_depth
+        if not use_depth:
+            tree = ET.parse(self.world)
+            for parent in tree.getroot().iter():
+                for sensor in list(parent):
+                    if sensor.tag == 'sensor' and sensor.get('type') in ('depth_camera', 'depth'):
+                        parent.remove(sensor)
+            tree.write(self.world, encoding='unicode')
         self.case, self.spec, self.gui = case, spec, gui
         self.record = record
         self.client = self.process = self.log = None
@@ -264,7 +272,7 @@ class SceneSession(SharedSession):
         os.environ['GZ_PARTITION'] = 'task_scene_' + uuid.uuid4().hex
         (self.output / 'partition.txt').write_text(os.environ['GZ_PARTITION'])
         try:
-            self.client = SceneClient(self.output, self.manifest['joint_control'], True, record=self.record)
+            self.client = SceneClient(self.output, self.manifest['joint_control'], True, record=self.record, use_depth=self.use_depth)
             self.log = (self.output / 'gazebo.log').open('w')
             self.process = subprocess.Popen(['gz', 'sim', '-r', '-v', '3'] +
                 ([] if self.gui else ['-s']) + [str(self.world)], stdout=self.log,
@@ -345,6 +353,8 @@ class SceneMonitor:
         self.task = task
         self.capping = CappingMonitor(require_carry=False)
         self.start = None
+        self.legacy_start = None
+        self.legacy_success = False
         self.success = False
         self.last = {}
         self.samples = []
@@ -357,14 +367,22 @@ class SceneMonitor:
             self.last = dict(time=stamp, right_sponge_contact=bool(client.water_contact),
                              right_holds_sponge=grasped, success=self.success)
         elif self.task == 'task2':
-            contact = bool(client.bilateral('left') and -.15 < q[5] < .15)
+            from .capping_monitor import closing_grip
+            physical_contact=bool(client.bilateral('left'))
+            legacy_contact=bool(physical_contact and -.15<q[5]<.15)
+            if legacy_contact and self.legacy_start is None:self.legacy_start=stamp
+            if not legacy_contact:self.legacy_start=None
+            if self.legacy_start is not None and stamp-self.legacy_start>=.6:self.legacy_success=True
+            close_intent=closing_grip(client,q,'left')
+            contact = physical_contact and close_intent
             if contact and self.start is None:
                 self.start = stamp
             if not contact:
                 self.start = None
             stable = 0. if self.start is None else stamp - self.start
             self.success = stable >= .6
-            self.last = dict(time=stamp, bilateral_contact=contact,
+            self.last = dict(success_metric_version=2,physical_bilateral_contact=physical_contact,closing_grip_command=close_intent,legacy_grip_angle_check=bool(-.15<q[5]<.15),legacy_success=self.legacy_success,
+                time=stamp, bilateral_contact=contact,
                              stable_seconds=stable, lift_required=False, success=self.success)
         else:
             self.last = self.capping.update(client)

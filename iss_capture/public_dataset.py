@@ -131,7 +131,7 @@ def dataset_provenance(directory):
                 "manifest_sha256", "checksums_sha256", "format") if key in data}
     return {"kind": "local", "directory": str(Path(directory))}
 
-def load_observation(directory, record):
+def load_observation(directory, record, include_depth=True):
     """Build policy input from recorded sensors; ignore labels and object truth."""
     directory = Path(directory)
     frame = record["frame"]
@@ -144,6 +144,7 @@ def load_observation(directory, record):
     for name in ("front", "side", "previous_front"):
         with Image.open(directory/(frame+"_"+name+".png")) as image:
             observation[name] = np.asarray(image.convert("RGB"))
+    if not include_depth:return observation
     with np.load(directory/(frame+"_depth.npz"), allow_pickle=False) as depth:
         for name in ("front", "side"):
             observation[name+"_depth"] = depth[name].astype(np.float32)

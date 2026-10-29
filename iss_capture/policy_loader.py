@@ -3,6 +3,12 @@ import json
 from pathlib import Path
 def load_policy(checkpoint,device='cuda'):
     variant=json.loads((Path(checkpoint)/'capture_config.json').read_text())['policy_variant']
+    if variant=='smolvla_rgb_joint_language_temporal_v1':
+        from .rgb_temporal_policy import RGBTemporalPolicy
+        return RGBTemporalPolicy(checkpoint,device)
+    if variant=='smolvla_rgb_joint_language_v1':
+        from .rgb_joint_policy import RGBJointPolicy
+        return RGBJointPolicy(checkpoint,device)
     if variant=='shared_three_task_smolvla_task_scenes_v1':
         from .scene_one_policy import SceneOnePolicy
         return SceneOnePolicy(checkpoint,device)

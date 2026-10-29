@@ -51,7 +51,7 @@ def main():
     policy=OnePolicy(a.checkpoint);out=a.output or ROOT/'runs'/time.strftime('one_policy_%Y%m%d_%H%M%S')
     results=[]
     for task in TASKS if a.task=='all' else [a.task]:
-        if policy.config.get('policy_variant')=='shared_three_task_smolvla_task_scenes_v1':
+        if policy.config.get('policy_variant') in ('shared_three_task_smolvla_task_scenes_v1','smolvla_rgb_joint_language_v1','smolvla_rgb_joint_language_temporal_v1'):
             from iss_capture.task_scenes import load_scene
             from run_task_scene_preview import run as run_scene
             spec,case=load_scene(task,a.seed)

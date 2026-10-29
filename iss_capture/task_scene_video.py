@@ -60,6 +60,7 @@ class CameraRecording:
             if index == 0:
                 image.save(self.output / f'initial_{name}.png')
             image.save(self.output / f'final_{name}.png')
+            if name + '_depth' not in observation:continue
             depth = np.asarray(observation[name + '_depth'], np.float32)
             folder = self.output / 'camera_frames' / (name + '_depth')
             folder.mkdir(parents=True, exist_ok=True)
@@ -87,6 +88,7 @@ class CameraRecording:
     def finish(self, display_frames, opposite_frames=None):
         files = {}
         for name in ('front', 'side', 'front_depth', 'side_depth'):
+            if not (self.output / 'camera_frames' / name).is_dir():continue
             files[name] = encode(self.output / 'camera_frames' / name,
                                  self.output / ('policy_' + name), self.stamps,
                                  slow_gif=not name.endswith('_depth'))
@@ -98,7 +100,7 @@ class CameraRecording:
                        (['/camera/opposite/image'] if opposite_frames is not None else []),
             recording_only_views=['overview'] + (['opposite'] if opposite_frames is not None else []),
             policy_rgb_views=['front', 'side', 'previous_front'],
-            depth_topics=['/camera/front/depth', '/camera/side/depth'],
+            depth_topics=['/camera/'+name+'/depth' for name in ('front','side') if files.get(name+'_depth')],
             depth_display='Fixed grayscale: 0.1 m white to 1.2 m black; invalid black. Raw float32 metres saved as NPY.',
             mp4_timing='simulation time; sampled frames presented at 30 fps, not 30 fps camera acquisition',
             gif_timing='one-third simulation speed plus 1.2 second final pause')

@@ -27,7 +27,11 @@ def main():
     configure_observation(policy, result["scene"], result["nominal_case"])
     predictions = []
     for record in records[:args.max_frames]:
-        command, debug = policy.predict(load_observation(episode, record), record["instruction"])
+        observation=load_observation(episode,record,include_depth=not getattr(policy,'rgb_only',False))
+        if getattr(policy,'rgb_only',False):
+            from iss_capture.rgb_joint_policy import select_inputs
+            observation=select_inputs(observation,policy.config.get('positions_only',False))
+        command, debug = policy.predict(observation, record["instruction"])
         if not np.isfinite(command).all():
             raise RuntimeError("Non-finite model output")
         predictions.append({"frame": record["frame"], "command": command.tolist(),
