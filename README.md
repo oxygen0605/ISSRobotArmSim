@@ -218,7 +218,7 @@ python infer_dataset.py --episode validation_task3_4200001 --max-frames 10
 [側面MP4](docs/results/media/task3-side.mp4) /
 [俯瞰MP4](docs/results/media/task3-overview.mp4)
 
-### 評価結果とHTML
+### 評価結果
 
 学習・モデル選択に使わなかった4条件ずつの評価結果です。上の成功動画とは別の試行です。
 
@@ -230,17 +230,6 @@ python infer_dataset.py --episode validation_task3_4200001 --max-frames 10
 | 合計 | 11／12 | 91.7% |
 
 [評価条件・モデルのハッシュ・各試行の結果](docs/results/evaluation-summary.json)
-
-Task 3の未成功例では、両物体を保持できましたが、挿入深さ約1 mmで停止しました。
-評価条件は少数で、広い条件や実機での成功率を保証するものではありません。
-
-[4視点・深度・未成功例のHTML](docs/results/index.html)も収録しています。
-ブラウザで動画を再生する場合は、リポジトリ直下から次を実行し、
-[ローカルの結果ページ](http://localhost:8000/docs/results/)を開いてください。
-
-~~~bash
-python3 -m http.server 8000 --bind 127.0.0.1
-~~~
 
 透明水滴の深度には理想化した表面を使い、吸着は接触後に球体表示をスポンジへ追従させています。
 吸水・流体計算は行っていません。把持には独自のV溝パッドを使っています。
