@@ -11,6 +11,12 @@ from iss_capture.public_dataset import ensure_dataset,dataset_provenance
 from iss_capture.vla_policy import load_base,new_adapter,base_model,make_batch,training_loss,BASE_REVISION,BASE_ID,PROCESSOR_REVISION
 from iss_capture.rgb_joint_policy import VARIANT,load_demonstrations,observations,action_target,decode_action
 
+def endpoint_actions(velocity, bias, scale):
+    # LeRobot uses u_t = noise - action. With zero noise, t=1 and one
+    # Euler step dt=-1, the normalized joint target is -predicted velocity.
+    return -velocity[..., :12].float()*scale+bias
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--data",type=Path,default=ROOT/"datasets/task_scenes_v1")
@@ -21,6 +27,7 @@ def main():
     p.add_argument("--eval-every",type=int,default=250);p.add_argument("--image-size",type=int,default=256,choices=[256,512])
     p.add_argument("--validation-frames-per-task",type=int,default=128,help="0 evaluates every validation frame")
     p.add_argument("--patience",type=int,default=0,help="Stop after this many validation checks without improvement; 0 disables")
+    p.add_argument("--kinematic-weight",type=float,default=0.)
     p.add_argument("--positions-only",action="store_true")
     p.add_argument("--robust-observations",action="store_true")
     p.add_argument("--chunk-size",type=int,default=1)
@@ -29,6 +36,8 @@ def main():
     p.add_argument("--endpoint",action="store_true")
     p.add_argument("--action-mode",choices=["delta","absolute","arm_delta_grip_absolute","cartesian"],default="delta")
     a=p.parse_args()
+    if a.kinematic_weight<0:p.error("kinematic-weight must be nonnegative")
+    if a.kinematic_weight and (not a.endpoint or a.action_mode!="absolute"):p.error("Kinematic loss requires endpoint training with absolute joints")
     if a.positions_only and a.joint_history:p.error("Angle-only input uses recurrent history instead of explicit gripper history")
     if a.chunk_size>1 and a.action_mode!="absolute":p.error("Action chunks require absolute joint targets")
     if not 1<=a.execution_steps<=a.chunk_size:p.error("execution-steps must be within the chunk")
@@ -70,6 +79,12 @@ def main():
         projection=base.model.state_proj.modules_to_save.default
         missing=-np.asarray(old["state_bias"][len(sb):])/np.asarray(old["state_scale"][len(sb):])
         with torch.no_grad():projection.bias.add_(projection.weight[:,len(sb):len(old["state_bias"])]@torch.tensor(missing,device="cuda",dtype=projection.weight.dtype))
+    captured={};geometry=None
+    if a.kinematic_weight:
+        from iss_capture.capping_kinematic_loss import KinematicLoss
+        geometry=KinematicLoss()
+        base.model.action_out_proj.register_forward_hook(lambda module,inputs,output:captured.update(velocity=output))
+    action_bias=torch.tensor(ab,device="cuda");action_scale=torch.tensor(asc,device="cuda")
     tokenizer=base.model.vlm_with_expert.processor.tokenizer
     opt=torch.optim.AdamW([v for v in policy.parameters() if v.requires_grad],lr=a.lr,weight_decay=1e-4)
     root=ET.parse(URDF).getroot();limits={}
@@ -90,6 +105,7 @@ def main():
         action_mode=a.action_mode,action_representation=a.action_mode,
         gripper_values=np.unique(np.round(np.stack([r["action"] for r in train])[:,[5,11]],6)).tolist(),
         training_method="deterministic endpoint" if a.endpoint else "SmolVLA flow matching",
+        kinematic_loss_weight=a.kinematic_weight,kinematics_used_at_inference=a.action_mode=="cartesian",
         train_episodes=sorted({r["episode"] for r in train}),validation_episodes=sorted({r["episode"] for r in validation}),
         phase_balanced_sampling=True,train_frames=len(train),validation_frames=len(validation),
         train_episode_counts={t:len({r["episode"] for r in groups[t]}) for t in tasks},
@@ -123,8 +139,10 @@ def main():
                     metrics[task]={"joint_mae_rad":float(error[:,[0,1,2,3,4,6,7,8,9,10]].mean()),
                         "gripper_mae_rad":float(error[:,[5,11]].mean()),
                         "gripper_class_error":float(((command[:,[5,11]]<.19)!=(truth[:,[5,11]]<.19)).mean())}
+                if geometry is not None:
+                    metrics[task]["kinematic_loss"]=float(geometry(torch.tensor(command,device="cuda",dtype=torch.float32),torch.tensor(truth,device="cuda",dtype=torch.float32)))
         score=np.mean([v["position_mae_m"]+.02*v["axis_mae"]+.015*v["gripper_class_error"] if a.action_mode=="cartesian"
-                       else v["joint_mae_rad"]+.25*v["gripper_mae_rad"]+.05*v["gripper_class_error"] for v in metrics.values()])
+                       else v["joint_mae_rad"]+.25*v["gripper_mae_rad"]+.05*v["gripper_class_error"]+a.kinematic_weight*v.get("kinematic_loss",0.) for v in metrics.values()])
         record=dict(step=step,score=float(score),tasks=metrics,seconds=time.monotonic()-started)
         history.append(record);print("VALIDATION "+json.dumps(record),flush=True)
         dest=a.output/f"step_{step}";dest.mkdir();policy.save_pretrained(dest)
@@ -161,6 +179,10 @@ def main():
             batch=make_batch(obs,[r["instruction"] for r in chosen],tokenizer,"cuda",ss,sb)
             batch["action"]=torch.tensor((np.stack([r["future"] for r in chosen])-ab)/asc,device="cuda",dtype=torch.float32)
             with torch.autocast("cuda",dtype=torch.bfloat16):loss=training_loss(policy,batch,axis,deterministic_endpoint=a.endpoint)/a.accumulate
+            if geometry is not None:
+                predicted=endpoint_actions(captured["velocity"],action_bias,action_scale)
+                target=batch["action"]*action_scale+action_bias
+                loss+=a.kinematic_weight*geometry(predicted.reshape(-1,12),target.reshape(-1,12))/a.accumulate
             if not torch.isfinite(loss):raise RuntimeError("Non-finite training loss")
             loss.backward();loss_value+=float(loss.detach())
         torch.nn.utils.clip_grad_norm_(policy.parameters(),1.);opt.step()

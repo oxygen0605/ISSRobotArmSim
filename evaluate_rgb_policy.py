@@ -11,6 +11,31 @@ from iss_capture.scene_training_cases import scenario
 from run_task_scene_preview import run, save, file_hashes
 
 
+def evaluate_case(policy, output, task, seed, spec, case, max_steps, record, infrastructure_retries=2):
+    paths = []
+    for attempt in range(infrastructure_retries+1):
+        name = f"{task}_{seed}" + (f"_infra_retry_{attempt}" if attempt else "")
+        path = output/name
+        result = run(policy, path, task, spec, case, max_steps=max_steps, record=record)
+        paths.append(str(path))
+        error = result.get("error")
+        if not error or error.get("kind") != "infrastructure_error":
+            break
+    return {**result, "infrastructure_retries":len(paths)-1, "attempt_paths":paths}
+
+def summarize(results, tasks, planned):
+    aggregate = {}
+    for task in tasks:
+        entries = [r for r in results if r["task"] == task]
+        valid = [r for r in entries if r.get("error") is None]
+        successes = sum(bool(r["success"]) for r in valid)
+        aggregate[task] = dict(successes=successes, attempted=len(entries), valid_trials=len(valid),
+            planned=planned, errors=len(entries)-len(valid),
+            infrastructure_retries=sum(r.get("infrastructure_retries",0) for r in entries),
+            rate=None if not valid else successes/len(valid))
+    return aggregate
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--checkpoint', type=Path, required=True)
@@ -20,7 +45,9 @@ def main():
     p.add_argument('--tasks', nargs='+', choices=['task1','task2','task3'], default=['task1','task2','task3'])
     p.add_argument('--max-steps', type=int, default=200)
     p.add_argument('--record-first', action='store_true')
+    p.add_argument('--infrastructure-retries', type=int, default=2)
     a = p.parse_args()
+    if a.infrastructure_retries < 0:p.error('infrastructure-retries must be nonnegative')
     a.output.mkdir(parents=True, exist_ok=False)
     plan = json.loads(a.plan.read_text())
     seeds = plan['held_out_test_seeds' if a.split == 'test' else 'development_seeds']
@@ -30,7 +57,8 @@ def main():
     save(a.output/'evaluation_plan.json', dict(split=a.split, seeds=seeds, tasks=a.tasks,
          checkpoint=str(a.checkpoint.resolve()), position_jitter_m=.005,
          plan_sha256=hashlib.sha256(a.plan.read_bytes()).hexdigest(),
-         teacher_intervention=False, max_steps=a.max_steps))
+         teacher_intervention=False, max_steps=a.max_steps,infrastructure_retries=a.infrastructure_retries,
+         ordinary_policy_failures_are_not_retried=True))
     policy = load_policy(a.checkpoint)
     if not getattr(policy, 'rgb_only', False):
         raise ValueError('RGB-only checkpoint required')
@@ -38,17 +66,11 @@ def main():
     for task in a.tasks:
         for index, seed in enumerate(seeds):
             spec, case, _ = scenario(task, seed, True)
-            result = run(policy, a.output/f'{task}_{seed}', task, spec, case,
-                         max_steps=a.max_steps, record=a.record_first and index == 0)
+            result = evaluate_case(policy, a.output, task, seed, spec, case, a.max_steps,
+                                   a.record_first and index == 0, a.infrastructure_retries)
             results.append(result)
             save(a.output/'results.json', results)
-            aggregate = {}
-            for t in a.tasks:
-                entries = [r for r in results if r['task'] == t]
-                successes = sum(bool(r['success']) and r['error'] is None for r in entries)
-                aggregate[t] = dict(successes=successes, attempted=len(entries),
-                    planned=len(seeds), errors=sum(r['error'] is not None for r in entries),
-                    rate=None if not entries else successes/len(entries))
+            aggregate = summarize(results,a.tasks,len(seeds))
             save(a.output/'summary.json', dict(split=a.split, complete=len(results) == len(seeds)*len(a.tasks),
                  tasks=aggregate, checkpoint=str(a.checkpoint.resolve())))
     if before != file_hashes([*sources, *a.checkpoint.iterdir()]):
