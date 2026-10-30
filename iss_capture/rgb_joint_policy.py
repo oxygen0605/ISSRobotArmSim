@@ -128,6 +128,8 @@ class RGBJointPolicy:
         batch=make_batch([obs],[instruction],self.tokenizer,self.device,self.state_scale,self.state_bias)
         with torch.inference_mode(),torch.autocast(self.device,dtype=torch.bfloat16,enabled=self.device=="cuda"):
             sequence=self.base.predict_action_chunk(batch,noise=torch.zeros((1,self.config.get("chunk_size",1),32),device=self.device))[0].float().cpu().numpy()
+        if sequence.shape!=(self.config.get('chunk_size',1),12) or not np.isfinite(sequence).all():
+            raise RuntimeError('Invalid joint action chunk')
         value=sequence[0]
         if self.config.get("chunk_size",1)>1:
             if self.config.get("action_mode")!="absolute":raise ValueError("Chunks require absolute joint targets")

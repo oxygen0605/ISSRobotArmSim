@@ -66,22 +66,27 @@ def test_rgb_only_recording_has_no_depth_outputs(tmp_path):
     assert (tmp_path/"policy_front.mp4").is_file()
     assert not (tmp_path/"camera_frames/front_depth").exists()
 
-def test_action_chunk_execution_uses_absolute_targets():
+@pytest.mark.parametrize('chunk_size,execution_steps',[(10,3),(50,10)])
+def test_action_chunk_execution_uses_absolute_targets(chunk_size,execution_steps):
     calls=[]
     policy=RGBJointPolicy.__new__(RGBJointPolicy);policy.device='cpu'
     def predict(batch,noise):
-        calls.append(1);out=torch.zeros((1,10,12));out[0,:,0]=torch.arange(1,11)/10
+        calls.append(1);out=torch.zeros((1,chunk_size,12));out[0,:,0]=torch.arange(1,chunk_size+1)/10
         out[0,:,[5,11]]=.55;return out
     policy.base=SimpleNamespace(predict_action_chunk=predict)
     policy.tokenizer=lambda tasks,**kw:{"input_ids":torch.ones((1,48),dtype=torch.long),"attention_mask":torch.ones((1,48),dtype=torch.long)}
     policy.state_bias=np.zeros(24,np.float32);policy.state_scale=np.ones(24,np.float32)
     policy.action_bias=np.zeros(12,np.float32);policy.action_scale=np.ones(12,np.float32)
-    policy.config={"policy_image_size":256,"chunk_size":10,"execution_steps":3,"action_mode":"absolute",
+    policy.config={"policy_image_size":256,"chunk_size":chunk_size,"execution_steps":execution_steps,"action_mode":"absolute",
                    "joint_lower":[-10]*12,"joint_upper":[10]*12,"gripper_values":[-.17,.55]}
     policy.reset()
-    outputs=[policy.predict(measured(),'Catch the pen.')[0][0] for _ in range(4)]
-    np.testing.assert_allclose(outputs,[.1,.2,.3,.1])
+    outputs=[policy.predict(measured(),'Catch the pen.')[0][0] for _ in range(execution_steps+1)]
+    np.testing.assert_allclose(outputs,[*[i/10 for i in range(1,execution_steps+1)],.1])
     assert len(calls)==2
+    policy.reset()
+    assert not policy.pending_actions
+    policy.predict(measured(),'Catch the cap.')
+    assert len(calls)==3
 
 
 def test_positions_only_excludes_velocity_and_extra_signals():
