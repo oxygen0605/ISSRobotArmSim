@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Fine-tune one SmolVLA on RGB, raw joint encoders and language for all tasks."""
-import argparse,hashlib,json,time,shutil
+import argparse,hashlib,json,time,shutil,subprocess
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import numpy as np
@@ -19,6 +19,8 @@ def main():
     p.add_argument("--steps",type=int,default=1500);p.add_argument("--batch-size",type=int,default=3)
     p.add_argument("--accumulate",type=int,default=1);p.add_argument("--lr",type=float,default=1e-4)
     p.add_argument("--eval-every",type=int,default=250);p.add_argument("--image-size",type=int,default=256,choices=[256,512])
+    p.add_argument("--validation-frames-per-task",type=int,default=128,help="0 evaluates every validation frame")
+    p.add_argument("--patience",type=int,default=0,help="Stop after this many validation checks without improvement; 0 disables")
     p.add_argument("--positions-only",action="store_true")
     p.add_argument("--robust-observations",action="store_true")
     p.add_argument("--chunk-size",type=int,default=1)
@@ -79,6 +81,9 @@ def main():
     metadata=dict(policy_variant=VARIANT,positions_only=a.positions_only,robust_observations=a.robust_observations,input_modalities=["rgb","joint_position","language"] if a.positions_only else ["rgb","joint_position","joint_velocity","language"],
         uses_depth=False,uses_geometry_features=False,teacher_at_inference=False,task_specific_model_routing=False,
         base_model=BASE_ID,base_revision=BASE_REVISION,processor_revision=PROCESSOR_REVISION,
+        training_code_commit=subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),
+        training_source_sha256={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in ("train_rgb_only.py","iss_capture/rgb_joint_policy.py","iss_capture/vla_policy.py")},
+        resume_checkpoint=str(a.resume) if a.resume else None,resume_adapter_sha256=old["adapter_sha256"] if a.resume else None,
         chunk_size=a.chunk_size,execution_steps=a.execution_steps,policy_image_size=a.image_size,denoising_steps=1 if a.endpoint else 4,state_dim=len(sb),action_dim=12,joint_history=a.joint_history,
         state_bias=sb.tolist(),state_scale=ss.tolist(),action_bias=ab.tolist(),action_scale=asc.tolist(),
         joint_lower=lower,joint_upper=upper,joint_order=list(JOINTS)*2,training_dataset=dataset_provenance(a.data),
@@ -86,13 +91,17 @@ def main():
         gripper_values=np.unique(np.round(np.stack([r["action"] for r in train])[:,[5,11]],6)).tolist(),
         training_method="deterministic endpoint" if a.endpoint else "SmolVLA flow matching",
         train_episodes=sorted({r["episode"] for r in train}),validation_episodes=sorted({r["episode"] for r in validation}),
-        phase_balanced_sampling=True,train_frames=len(train),validation_frames=len(validation),extra_data=[str(p) for p in a.extra_data],test_used_for_training_or_selection=False)
+        phase_balanced_sampling=True,train_frames=len(train),validation_frames=len(validation),
+        train_episode_counts={t:len({r["episode"] for r in groups[t]}) for t in tasks},
+        validation_episode_counts={t:len({r["episode"] for r in validation if r["task"]==t}) for t in tasks},
+        optimization=dict(steps=a.steps,batch_size=a.batch_size,accumulate=a.accumulate,lr=a.lr,seed=20261029,patience=a.patience),
+        validation_frames_per_task=a.validation_frames_per_task,extra_data=[str(p) for p in a.extra_data],test_used_for_training_or_selection=False)
     selected={t:[r for r in validation if r["task"]==t] for t in tasks}
-    selected={t:[v[i] for i in np.linspace(0,len(v)-1,min(32,len(v))).astype(int)] for t,v in selected.items()}
-    best=float("inf");history=[];started=time.monotonic()
+    selected={t:([v[i] for i in np.linspace(0,len(v)-1,min(a.validation_frames_per_task,len(v))).astype(int)] if a.validation_frames_per_task else v) for t,v in selected.items()}
+    best=float("inf");history=[];started=time.monotonic();rounds_without_improvement=0
     axis=torch.tensor([3,3,3,3,3,3,1,1,1,1,2,2] if a.action_mode=="cartesian" else [1,1,1,1,1,2,1,1,1,1,1,2],device="cuda",dtype=torch.float32)
     def validate(step):
-        nonlocal best
+        nonlocal best,rounds_without_improvement
         policy.eval();metrics={}
         with torch.inference_mode():
             for task,examples in selected.items():
@@ -122,9 +131,10 @@ def main():
         cfg={**metadata,"selected_step":step,"validation":record,"adapter_sha256":hashlib.sha256((dest/"adapter_model.safetensors").read_bytes()).hexdigest()}
         (dest/"capture_config.json").write_text(json.dumps(cfg,indent=2))
         if score<best:
-            best=score
+            best=score;rounds_without_improvement=0
             if (a.output/"best").exists():shutil.rmtree(a.output/"best")
             shutil.copytree(dest,a.output/"best")
+        else:rounds_without_improvement+=1
         (a.output/"validation_history.json").write_text(json.dumps(history,indent=2))
         policy.train()
     print("DATA "+json.dumps({"train":len(train),"validation":len(validation),"train_episodes":len(metadata["train_episodes"]),"validation_episodes":len(metadata["validation_episodes"]),"input":"3 RGB + raw q/dq + language only"}),flush=True)
@@ -156,6 +166,10 @@ def main():
         torch.nn.utils.clip_grad_norm_(policy.parameters(),1.);opt.step()
         if step%20==0:
             print(json.dumps({"step":step,"loss":loss_value,"seconds":time.monotonic()-started,"gpu_allocated_MB":torch.cuda.max_memory_allocated()/1e6}),flush=True)
-        if step%a.eval_every==0 or step==a.steps:validate(step)
+        if step%a.eval_every==0 or step==a.steps:
+            validate(step)
+            if a.patience and rounds_without_improvement>=a.patience:
+                print("EARLY_STOP "+json.dumps(dict(step=step,patience=a.patience)),flush=True)
+                break
     print("DONE "+str(a.output/"best"),flush=True)
 if __name__=="__main__":main()
