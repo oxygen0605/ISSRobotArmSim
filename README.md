@@ -1,5 +1,9 @@
 # ISSRobotArmSim
 
+このブランチはRGB・関節状態・言語を入力するSmolVLAの追加学習実験です。
+[各タスク50件への増量実験](docs/rgb_only_balanced50.md)に条件と評価結果を記録しています。
+深度ありの実装・モデルは [main ブランチ](https://github.com/oxygen0605/ISSRobotArmSim/tree/main) に保持しています。以下の既存デモ・既定モデルの説明は深度あり版です。
+
 ISS船内をイメージした環境で、SO-101 × 2の双腕ロボットをSmolVLAで動かすシミュレーションです。
 
 - [概要](#概要)
