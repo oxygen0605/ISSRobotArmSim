@@ -2,8 +2,6 @@
 
 ISS船内をイメージしたGazebo環境で、SO-101 × 2の双腕ロボットを動かすシミュレーションです。**1つのSmolVLA（One Policy）で3タスクを実行**します。
 
-**mainはRGB版です。** 入力はRGB画像・関節状態・英語指示で、深度画像や物体の真値をモデルに渡しません。以前の深度あり版は [depth-useブランチ](https://github.com/oxygen0605/ISSRobotArmSim/tree/depth-use) に保存しています。
-
 - [概要](#概要)
 - [セットアップ](#セットアップ)
 - [学習データセット](#学習データセット)
@@ -28,7 +26,7 @@ SmolVLAが左右12軸の絶対関節目標を50ステップ分出力し、先頭
 | 公開場所 | 内容 |
 |---|---|
 | このGitHubリポジトリ | コード、ROS設定、アセット、最終モデルと追加学習の初期アダプター（各約21MB） |
-| [oxygen65/ISSRobotArm](https://huggingface.co/datasets/oxygen65/ISSRobotArm) | RGB版：学習150・検証30エピソード、11,079時刻分、約2.23GBのtar |
+| [oxygen65/ISSRobotArm](https://huggingface.co/datasets/oxygen65/ISSRobotArm) | 学習150・検証30エピソード、11,079時刻分、約2.23GBのtar |
 | 学習元リポジトリ | 基盤モデル・プロセッサ。セットアップ時に固定revisionから取得 |
 
 ## セットアップ
@@ -61,7 +59,7 @@ python scripts/download_dataset.py
 | 検証エピソード | 10 | 10 | 10 | 30 |
 | 検証フレーム | 182 | 455 | 1,156 | 1,793 |
 
-独自のPNG・JSON形式で、LeRobotDataset形式ではありません。3枚のRGB、関節状態、言語指示、教師の関節目標を収録しています。深度ファイルは含みません。`goal`や`teacher_phase`は教師ラベルで、推論入力には使いません。
+データはエピソードごとのPNG画像とJSONで保存しています。3枚のRGB画像、関節状態、言語指示、教師の関節目標を収録しています。`goal`と`teacher_phase`には、教師ラベルとして目標と動作段階を記録しています。
 
 ## データ作成（オプション）
 
@@ -82,7 +80,7 @@ python prepare_rgb_dataset.py \
   --source datasets/my_rgb_data --output datasets/my_rgb_selected
 ```
 
-学習・検証のseedを分け、物体位置・並進速度・回転方向を変えます。既存フォルダでは完了件数を確認して不足分を収集します。失敗試行は保持しますが、採用する成功件数には含めません。
+学習・検証のseedを分け、物体位置・並進速度・回転方向を変えます。既存フォルダでは完了件数を確認して不足分を収集します。失敗試行は調査用ログとして保存します。
 
 ## 学習方法
 
@@ -115,7 +113,7 @@ RGB_OUTPUT_DIR=artifacts/my_rgb_training \
   bash scripts/train_rgb_chunks30k.sh
 ```
 
-自作データは`RGB_DATASET_DIR=datasets/my_rgb_selected`で指定します。公開した初期重みには以前の追加学習履歴も含まれます。この手順はその重みからの継続学習であり、基盤モデルから全履歴を再現する手順ではありません。
+自作データは`RGB_DATASET_DIR=datasets/my_rgb_selected`で指定します。初期重みは本シミュレーションのデータで追加学習したもので、その学習履歴を引き継いで学習を進めます。
 
 ## 推論方法
 
@@ -147,11 +145,11 @@ python infer_dataset.py --episode validation_task2_4200001 --max-frames 10
 python infer_dataset.py --episode validation_task3_4200001 --max-frames 10
 ```
 
-必要なエピソードだけを取得し、記録されたRGB・エンコーダ・言語から予測します。シミュレータを動かさないため、閉ループの成功率とは区別します。
+必要なエピソードだけを取得し、記録されたRGB・エンコーダ・言語に対する予測を確認します。タスクの成功率はGazeboでの実行で測定します。
 
 ## 推論結果
 
-同じ初期条件10個を各タスクで評価しました。重み・成功判定を固定し、教師介入・深度入力なしで実行しています。
+学習済みの重みと成功判定を固定し、同じ初期条件10個を各タスクで評価しました。
 
 | タスク | 10,000 step | 20,000 step | **30,000 step** |
 |---|---:|---:|---:|
@@ -182,9 +180,23 @@ python infer_dataset.py --episode validation_task3_4200001 --max-frames 10
 
 [一人称MP4](docs/results/rgb/media/task3-front.mp4) / [対面MP4](docs/results/rgb/media/task3-opposite.mp4) / [側面MP4](docs/results/rgb/media/task3-side.mp4) / [全体MP4](docs/results/rgb/media/task3-overview.mp4)
 
-水滴は評価時のseed 7300000、ペンは7300001、キャップは7300002の追加録画で成功を確認した映像です。追加録画は上の成功率へ加えていません。
+水滴は評価時のseed 7300000、ペンとキャップは同じ成功条件（7300001・7300002）で別途撮影した例です。表の成功率は評価用30試行から算出しています。
 
 ## ライセンス
 
 自作コード・自作アセットは[Apache License 2.0](LICENSE)です。第三者のコード・ロボットモデル・基盤モデルの条件は[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)と`licenses/`を参照してください。
-独立した教育用シミュレーションであり、JAXA等の公式製品ではありません。
+独立した教育用シミュレーションです。
+
+## 付録：深度情報を利用した実験
+
+RGB画像に深度情報を加えたモデルも試しました。深度から物体の位置・軸方向を求め、学習した動作目標を逆運動学で関節指令に変換する構成です。
+
+| タスク | 成功数／試行数 | 成功率 |
+|---|---:|---:|
+| 水滴回収 | 4/4 | 100% |
+| ペン把持 | 4/4 | 100% |
+| キャップ装着 | 3/4 | 75% |
+
+この構成では24エピソードの追加学習で上記の結果を得ました。基本構成の150エピソードと比べて少ないデータであり、**本実装では、深度情報を利用する方が、RGB画像を基本とする構成よりも容易に高い成功率を得られました。** 位置・向きの推定を幾何処理で補えることが、学習を進めやすくしたと考えられます。
+
+制御構成・学習履歴・評価条件が異なるため、構成全体についての開発上の比較です。透明水滴の深度は理想化したシミュレータ表面を用いました。実装と当時の記録は[depth-useブランチ](https://github.com/oxygen0605/ISSRobotArmSim/tree/depth-use)にあります。
