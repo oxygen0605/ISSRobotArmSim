@@ -5,7 +5,7 @@ import numpy as np
 from PIL import Image
 from .config import ROOT
 
-DEFAULT_DIRECTORY = ROOT / "datasets/task_scenes_v1"
+DEFAULT_DIRECTORY = ROOT / "datasets/rgb_only_balanced50_public"
 SOURCE_FILE = ROOT / "config/dataset_source.json"
 
 def digest(path):
@@ -67,11 +67,11 @@ def download_dataset(destination=DEFAULT_DIRECTORY, episodes=None, split=None):
     def fetch(name):
         return Path(hf_hub_download(config["repo_id"], name, repo_type="dataset",
                                    revision=config["revision"]))
-    manifest_file = fetch("metadata/dataset_manifest.json")
+    manifest_file = fetch(config.get("manifest_path", "metadata/dataset_manifest.json"))
     if digest(manifest_file) != config["manifest_sha256"]:
         raise RuntimeError("Dataset manifest hash mismatch")
     manifest = json.loads(manifest_file.read_text())
-    checksum_file = fetch("metadata/file_checksums.jsonl")
+    checksum_file = fetch(config.get("checksums_path", "metadata/file_checksums.jsonl"))
     if digest(checksum_file) != config["checksums_sha256"]:
         raise RuntimeError("Dataset checksums hash mismatch")
     checksums = [json.loads(line) for line in checksum_file.read_text().splitlines()]
@@ -94,6 +94,11 @@ def download_dataset(destination=DEFAULT_DIRECTORY, episodes=None, split=None):
     (destination/"metadata").mkdir(exist_ok=True)
     shutil.copy2(manifest_file, destination/"metadata/dataset_manifest.json")
     shutil.copy2(checksum_file, destination/"metadata/file_checksums.jsonl")
+    if config.get("selection_manifest_path"):
+        selection_file = fetch(config["selection_manifest_path"])
+        if digest(selection_file) != config["selection_manifest_sha256"]:
+            raise RuntimeError("Dataset selection manifest hash mismatch")
+        shutil.copy2(selection_file, destination/"selection_manifest.json")
     provenance = {**config, "downloaded_episodes": sorted(
         name for name in known if (destination/name/"result.json").is_file())}
     (destination/".dataset_source.json").write_text(json.dumps(provenance, indent=2)+"\n")
@@ -128,7 +133,7 @@ def dataset_provenance(directory):
     if marker.is_file():
         data = json.loads(marker.read_text())
         return {key: data[key] for key in ("repo_id", "repo_type", "revision",
-                "manifest_sha256", "checksums_sha256", "format") if key in data}
+                "manifest_sha256", "checksums_sha256", "selection_manifest_sha256", "manifest_path", "format") if key in data}
     return {"kind": "local", "directory": str(Path(directory))}
 
 def load_observation(directory, record, include_depth=True):

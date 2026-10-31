@@ -1,248 +1,190 @@
 # ISSRobotArmSim
 
-このブランチはRGB・関節状態・言語を入力するSmolVLAの追加学習実験です。
-[各タスク50件への増量実験](docs/rgb_only_balanced50.md)に条件と評価結果を記録しています。
-深度ありの実装・モデルは [main ブランチ](https://github.com/oxygen0605/ISSRobotArmSim/tree/main) に保持しています。以下の既存デモ・既定モデルの説明は深度あり版です。
+ISS船内をイメージしたGazebo環境で、SO-101 × 2の双腕ロボットを動かすシミュレーションです。**1つのSmolVLA（One Policy）で3タスクを実行**します。
 
-ISS船内をイメージした環境で、SO-101 × 2の双腕ロボットをSmolVLAで動かすシミュレーションです。
+**mainはRGB版です。** 入力はRGB画像・関節状態・英語指示で、深度画像や物体の真値をモデルに渡しません。以前の深度あり版は [depth-useブランチ](https://github.com/oxygen0605/ISSRobotArmSim/tree/depth-use) に保存しています。
 
 - [概要](#概要)
 - [セットアップ](#セットアップ)
-- [学習データセットの作成（オプション）](#dataset-creation)
+- [学習データセット](#学習データセット)
+- [データ作成（オプション）](#データ作成オプション)
 - [学習方法](#学習方法)
 - [推論方法](#推論方法)
 - [推論結果](#推論結果)
 
 ## 概要
 
-**1つの学習済みモデルを使うOne Policy構成**で、英語の指示に応じて次の3タスクを実行します。
-
 | タスク | 初期状態と目標 |
 |---|---|
-| Task 1：水滴回収 | 右腕でスポンジを把持した状態から、両腕の間を漂う水滴に接触させて回収する |
-| Task 2：ペン把持 | 両腕の間で回転するペンを、左腕でつかんで保持する |
-| Task 3：キャップ装着 | 左腕でペン、右腕でキャップをつかみ、軸を合わせてペン先に差し込む |
+| Task 1：水滴回収 | 右腕でスポンジを把持した状態から、漂う水滴を接触・接着させる |
+| Task 2：ペン把持 | 回転しながら漂うペンを、左腕でつかんで保持する |
+| Task 3：キャップ装着 | 左腕でペン、右腕でキャップをつかみ、軸を合わせて差し込む |
 
 両腕は作業台の同じ一辺に並び、一人称カメラを両腕の間に配置しています。
-SmolVLAと学習した共有出力部が手先の位置・向き・指の開閉を出力し、逆運動学とROS 2の標準JointTrajectoryControllerで動かします。
-
-入力は一人称・側面・過去の一人称のRGB画像、RGB-Dから推定した幾何情報、関節状態、前回指令、英語指示文です。
-物体の真値と接触情報は初期化・教師データ生成・成功判定に用い、推論のモデル入力には渡しません。
+入力は一人称・側面・過去の一人称のRGB画像（各256×256）、関節角12値・関節速度12値、英語指示です。
+SmolVLAが左右12軸の絶対関節目標を50ステップ分出力し、先頭10ステップを使ってから再推論します。
+目標をROS 2標準のJointTrajectoryControllerへ渡し、シミュレーション時間で10Hzで制御します。新規VLA推論は1Hzです。
 
 | 公開場所 | 内容 |
 |---|---|
-| このGitHubリポジトリ | コード、ROS設定、アセット、追加学習済み重み（約22.6 MB） |
-| [Hugging Face：oxygen65/ISSRobotArm](https://huggingface.co/datasets/oxygen65/ISSRobotArm) | 学習24・検証8エピソード、1,859時刻分の教師データ（約1.81 GB） |
-| Hugging Faceの学習元リポジトリ | 基盤モデル・プロセッサ（約912 MB、セットアップ時に取得） |
+| このGitHubリポジトリ | コード、ROS設定、アセット、最終モデルと追加学習の初期アダプター（各約21MB） |
+| [oxygen65/ISSRobotArm](https://huggingface.co/datasets/oxygen65/ISSRobotArm) | RGB版：学習150・検証30エピソード、11,079時刻分、約2.23GBのtar |
+| 学習元リポジトリ | 基盤モデル・プロセッサ。セットアップ時に固定revisionから取得 |
 
 ## セットアップ
 
-動作確認環境はUbuntu 24.04（WSL 2 + WSLg）、ROS 2 Jazzy、Gazebo Harmonic、Python 3.12です。
-CUDAを使えるNVIDIA GPUとドライバーが必要です。初回セットアップにはインターネット接続を使います。
+Ubuntu 24.04（WSL 2 + WSLg）、ROS 2 Jazzy、Gazebo Harmonic、Python 3.12、CUDA対応NVIDIA GPUを使用します。
 
-~~~bash
+```bash
 git clone https://github.com/oxygen0605/ISSRobotArmSim.git
 cd ISSRobotArmSim
-
-# ROS 2・Gazebo・ビルドツールなど
 sudo bash scripts/install_ros_jazzy.sh
-
-# Python環境・基盤モデル・水滴プラグイン・ROSパッケージ
 bash scripts/setup_runtime.sh
-~~~
-
-新しいターミナルでは、リポジトリへ移動して環境を読み込みます。以下のコマンドもリポジトリ直下で実行してください。
-
-~~~bash
-cd ISSRobotArmSim
 source scripts/ros_env.sh
-~~~
+```
 
-**配布済みモデルでシミュレーションを動かすだけなら、データセットの取得や学習は不要です。**
-[推論方法](#推論方法)へ進んでください。
+**配布モデルでシミュレーションを動かすだけなら、データセットの取得・学習は不要です。**
 
-<a id="dataset-creation"></a>
+## 学習データセット
 
-## 学習データセットの作成（オプション）
-
-公開済みデータを使う場合は、この節を省略できます。取得コマンドは次のとおりです。
-
-~~~bash
+```bash
 source scripts/ros_env.sh
 python scripts/download_dataset.py
-~~~
+```
 
-[config/dataset_source.json](config/dataset_source.json)で固定したrevisionから取得し、アーカイブと展開後のファイルのSHA-256を検証します。
-保存先は datasets/task_scenes_v1/ です。形式はPNG・NPZ・JSONによる独自形式で、LeRobotDataset形式ではありません。
+[config/dataset_source.json](config/dataset_source.json)で固定した公開revisionから取得し、tarと展開後ファイルのSHA-256を検証します。保存先は`datasets/rgb_only_balanced50_public/`です。ログインなしで取得できます。
 
-### 自分で教師データを作成する
+| 分割 | 水滴回収 | ペン把持 | キャップ装着 | 合計 |
+|---|---:|---:|---:|---:|
+| 学習エピソード | 50 | 50 | 50 | 150 |
+| 学習フレーム | 909 | 2,223 | 6,154 | 9,286 |
+| 検証エピソード | 10 | 10 | 10 | 30 |
+| 検証フレーム | 182 | 455 | 1,156 | 1,793 |
 
-教師制御はGazeboから物体の正確な位置・向きを取得し、移動や回転を見積もって手先の目標を決めます。
-逆運動学で各関節の角度に変換し、実際にシミュレータを動かしてRGB-D画像と動作指令を記録します。
+独自のPNG・JSON形式で、LeRobotDataset形式ではありません。3枚のRGB、関節状態、言語指示、教師の関節目標を収録しています。深度ファイルは含みません。`goal`や`teacher_phase`は教師ラベルで、推論入力には使いません。
 
-まず1エピソードだけ作る例です。出力先には新しいフォルダを指定してください。
+## データ作成（オプション）
 
-~~~bash
-python collect_task_scene.py   --task task1 --split train --seed 4100000   --output datasets/teacher_preview/train_task1_4100000
-~~~
+公開データを使う場合は省略できます。教師制御はGazeboの物体位置・向きの真値を使って目標を決め、逆運動学で関節指令に変換します。実際に動かしたRGBと状態・指令を保存し、成功した軌跡を学習に採用します。
 
-3タスクをまとめて収集する場合は、公開データと別の保存先を指定します。
+```bash
+source scripts/ros_env.sh
+mkdir -p datasets/my_rgb_data
+cp config/rgb_collection_plan.json datasets/my_rgb_data/collection_plan.json
+for TASK in task1 task2 task3; do
+  ROS_DOMAIN_ID=90 python collect_rgb_dataset.py \
+    --output datasets/my_rgb_data --task "$TASK" \
+    --train-target 50 --validation-target 10 \
+    --train-seed 8100000 --validation-seed 8200000
+done
 
-~~~bash
-python collect_task_scene_suite.py   --output-root datasets/generated_task_scenes   --train-count 8 --validation-count 4
-~~~
+python prepare_rgb_dataset.py \
+  --source datasets/my_rgb_data --output datasets/my_rgb_selected
+```
 
-各タスクについて学習8条件・検証4条件を試行します。成功件数は実行結果によって変わります。
-学習・検証は別のseed群を使い、初期位置・速度・回転方向を変化させます。
-成功軌跡を学習対象にし、未成功の試行も記録します。教師はタスクの実行時には使用しません。
-
-各エピソードには以下を保存します。
-
-- RGB画像：一人称、側面、過去の一人称
-- 深度画像：一人称・側面のfloat32配列（NPZ、単位m）
-- samples.json：関節状態、指示文、教師指令、時刻など
-- result.json：task・split・seed・初期条件・成功判定
-- 接触情報、シミュレータ設定、ログなど
+学習・検証のseedを分け、物体位置・並進速度・回転方向を変えます。既存フォルダでは完了件数を確認して不足分を収集します。失敗試行は保持しますが、採用する成功件数には含めません。
 
 ## 学習方法
 
-### 公開データで追加学習する
+公開した初期アダプターから、今回と同じ設定で追加学習する例です。
 
-~~~bash
+```bash
 source scripts/ros_env.sh
-TRAIN_OUTPUT="$PWD/artifacts/retrained_$(date +%Y%m%d_%H%M%S)"
-bash scripts/train_task_scenes.sh "$TRAIN_OUTPUT"
-~~~
+bash scripts/train_rgb_chunks30k.sh
+```
 
-公開データを取得・検証した後、次の順で学習します。
+| パラメータ | 設定 |
+|---|---|
+| 開始点 | `artifacts/smolvla_rgb_initial` |
+| 実効バッチ | 64（micro batch 32 × 累積2回） |
+| Optimizer | AdamW、weight decay `1e-4` |
+| 学習率 | warmup 1,000、peak `3e-4`、cosine decay、final `3e-5` |
+| 更新回数 | 30,000 optimizer step、早期終了なし |
+| 保存 | 10,000・20,000・30,000ステップ |
+| LoRA | rank 16、alpha 32、dropout 0.05 |
+| チャンク／実行 | 50／10 |
+| 学習方式 | deterministic endpoint、運動学の補助損失0.003 |
 
-1. 公開モデルを初期値として、SmolVLAのLoRAなどを1,500ステップ追加学習する。
-2. タスク・把持・組み立て段階と目標を扱う共有出力部を12,000ステップ学習する。
+出力は`artifacts/smolvla_rgb_chunks50_steps30000_v1/step_30000/`です。`best`は別途保存する検証最良値で、掲載評価に使ったのは30,000ステップです。
 
-新しいモデルは artifacts/retrained_日時/head/best/ に保存されます。
-出力先を指定する場合は、スクリプトの第1引数に新規フォルダを渡します。
-これは公開モデルからの追加学習手順です。以前のアダプターも引き継いだ元モデルの全学習履歴を、最初から再現する手順ではありません。
+GPUメモリが少ない場合は、実効バッチ64のままmicro batchを小さくできます。再実験では出力先を変えてください。
 
-### 自分で作成したデータを使う
+```bash
+RGB_MICRO_BATCH_SIZE=16 \
+RGB_OUTPUT_DIR=artifacts/my_rgb_training \
+  bash scripts/train_rgb_chunks30k.sh
+```
 
-前節の datasets/generated_task_scenes/ を使う場合の例です。全タスクの学習・検証の成功エピソードが必要です。
-
-~~~bash
-TRAIN_OUTPUT="artifacts/generated_$(date +%Y%m%d_%H%M%S)"
-
-python train_scene_backbone.py   --data datasets/generated_task_scenes   --resume-from artifacts/smolvla_one_policy   --output "$TRAIN_OUTPUT/backbone"   --endpoint --steps 1500 --batch-size 6 --lr 0.0001 --eval-every 250
-
-python train_scene_head.py   --dataset datasets/generated_task_scenes   --checkpoint "$TRAIN_OUTPUT/backbone/best"   --output "$TRAIN_OUTPUT/head"   --grip-closure-refinement --assembly-step-refinement --steps 12000
-~~~
-
-公開データで学習したモデルには、データセットの参照先・revision・ハッシュも保存します。
+自作データは`RGB_DATASET_DIR=datasets/my_rgb_selected`で指定します。公開した初期重みには以前の追加学習履歴も含まれます。この手順はその重みからの継続学習であり、基盤モデルから全履歴を再現する手順ではありません。
 
 ## 推論方法
 
-### Gazeboで3タスクを実行する
-
-~~~bash
+```bash
 source scripts/ros_env.sh
-ros2 launch iss_capture_ros one_policy.launch.py   task:=all seed:=3300002 gui:=true record:=true
-~~~
+ros2 launch iss_capture_ros one_policy.launch.py \
+  task:=all seed:=7300002 position_jitter:=true \
+  gui:=true record:=true max_steps:=200
+```
 
-| 引数 | 指定例 |
+| 引数 | 意味 |
 |---|---|
-| task | all、task1、task2、task3 |
-| seed | 初期状態を決める整数。掲載動画は3300002 |
-| gui | trueで画面表示、falseでGUIなし |
-| record | trueで動画を保存 |
-| checkpoint | 使用するモデルのディレクトリ。標準はartifacts/smolvla_one_policy |
+| `task` | `task1`、`task2`、`task3`、`all` |
+| `checkpoint` | 既定は`artifacts/smolvla_rgb_only`（30,000ステップ） |
+| `position_jitter` | `true`で評価と同じ各軸±5mmの初期条件を使用 |
+| `gui` / `record` | GUI表示／4視点動画の保存 |
+| `max_steps` | 制御ステップの上限。評価は200 |
 
-追加学習したモデルは、checkpointにhead/best/の絶対パスを指定して実行します。
-以下のTRAIN_OUTPUTは学習時に設定した出力先です。別のターミナルでは、そのフォルダを再設定してください。
+言語指示と配置は[config/task_scenes.json](config/task_scenes.json)にあります。左右はロボット基準です。
+結果と等倍速MP4は`runs/one_policy_日時/taskN/`へ保存します。`policy_front.mp4`が一人称、`policy_opposite.mp4`が対面、`policy_side.mp4`が側面、`policy_overview.mp4`が全体です。
 
-~~~bash
-ros2 launch iss_capture_ros one_policy.launch.py   task:=all seed:=3300002   checkpoint:="$(realpath "$TRAIN_OUTPUT/head/best")"
-~~~
+別の学習済み重みを使う場合は、`checkpoint:=/絶対パス/step_30000`を指定します。
 
-物体の初期配置と英語指示文は [config/task_scenes.json](config/task_scenes.json) にあります。
-左右はロボット基準です。対面カメラでは画面上の左右が逆になります。
+### 公開データへのオフライン推論
 
-動画と結果は runs/one_policy_日時/taskN/ に保存します。
-
-| ファイル | 内容 |
-|---|---|
-| policy_front.mp4 | 一人称視点 |
-| policy_side.mp4 | 側面視点 |
-| policy_overview.mp4 | 俯瞰視点（記録専用） |
-| policy_opposite.mp4 | 対面視点（記録専用） |
-| policy_front_depth.mp4 / policy_side_depth.mp4 | 深度表示 |
-| result.json / trace.json | 成功判定・条件・各ステップの指令など |
-
-### 公開データを使ってオフライン推論する
-
-~~~bash
+```bash
 python infer_dataset.py --episode validation_task1_4200000 --max-frames 10
 python infer_dataset.py --episode validation_task2_4200001 --max-frames 10
 python infer_dataset.py --episode validation_task3_4200001 --max-frames 10
-~~~
+```
 
-必要なエピソードだけを取得し、記録された画像・深度・関節状態から予測します。
-出力先は runs/dataset_inference_日時/ です。シミュレータは動かさないため、この結果は閉ループの成功率とは区別します。
+必要なエピソードだけを取得し、記録されたRGB・エンコーダ・言語から予測します。シミュレータを動かさないため、閉ループの成功率とは区別します。
 
 ## 推論結果
 
-以下は、先にHTMLで掲載したseed 3300002の成功動画です。
-配布モデルとアダプター・共有出力部の重みが同じであることをハッシュで確認しています。
+同じ初期条件10個を各タスクで評価しました。重み・成功判定を固定し、教師介入・深度入力なしで実行しています。
 
-**GIFはシミュレーション時間に対して等倍速（10 fps表示）です。**
-元の等倍速MP4から作成し、終了後約1秒の保持も含みます。推論待ちを含む実際の処理速度を示すものではありません。
-配置は左上＝一人称、右上＝対面、左下＝側面、右下＝俯瞰です。
+| タスク | 10,000 step | 20,000 step | **30,000 step** |
+|---|---:|---:|---:|
+| 水滴回収 | 10/10 | 10/10 | **10/10（100%）** |
+| ペン把持 | 7/10 | 8/10 | **8/10（80%）** |
+| キャップ装着 | 4/10 | 6/10 | **7/10（70%）** |
+| 合計 | 21/30 | 24/30 | **25/30** |
+
+実行エラー・再試行は0件です。各10条件での観測値で、20,000と30,000の差は合計1件です。条件によって成否は入れ替わっています。[評価記録](docs/results/rgb/evaluation-summary.json)
+
+以下は同じ30,000ステップモデルの成功動画です。GIF・MP4ともシミュレーション時間の等倍速です。左上＝一人称、右上＝対面、左下＝側面、右下＝全体。
 
 ### Task 1：水滴回収
 
-![Task 1：水滴回収・4視点・等倍速](docs/results/media/task1-four-views-1x.gif)
+![水滴回収・成功・等倍速](docs/results/rgb/media/task1-four-views-1x.gif)
 
-[一人称MP4](docs/results/media/task1-front.mp4) /
-[対面MP4](docs/results/media/task1-opposite.mp4) /
-[側面MP4](docs/results/media/task1-side.mp4) /
-[俯瞰MP4](docs/results/media/task1-overview.mp4)
+[一人称MP4](docs/results/rgb/media/task1-front.mp4) / [対面MP4](docs/results/rgb/media/task1-opposite.mp4) / [側面MP4](docs/results/rgb/media/task1-side.mp4) / [全体MP4](docs/results/rgb/media/task1-overview.mp4)
 
-### Task 2：回転するペンの把持
+### Task 2：ペン把持
 
-![Task 2：ペン把持・4視点・等倍速](docs/results/media/task2-four-views-1x.gif)
+![ペン把持・成功・等倍速](docs/results/rgb/media/task2-four-views-1x.gif)
 
-[一人称MP4](docs/results/media/task2-front.mp4) /
-[対面MP4](docs/results/media/task2-opposite.mp4) /
-[側面MP4](docs/results/media/task2-side.mp4) /
-[俯瞰MP4](docs/results/media/task2-overview.mp4)
+[一人称MP4](docs/results/rgb/media/task2-front.mp4) / [対面MP4](docs/results/rgb/media/task2-opposite.mp4) / [側面MP4](docs/results/rgb/media/task2-side.mp4) / [全体MP4](docs/results/rgb/media/task2-overview.mp4)
 
 ### Task 3：キャップ装着
 
-![Task 3：キャップ装着・4視点・等倍速](docs/results/media/task3-four-views-1x.gif)
+![キャップ装着・成功・等倍速](docs/results/rgb/media/task3-four-views-1x.gif)
 
-[一人称MP4](docs/results/media/task3-front.mp4) /
-[対面MP4](docs/results/media/task3-opposite.mp4) /
-[側面MP4](docs/results/media/task3-side.mp4) /
-[俯瞰MP4](docs/results/media/task3-overview.mp4)
+[一人称MP4](docs/results/rgb/media/task3-front.mp4) / [対面MP4](docs/results/rgb/media/task3-opposite.mp4) / [側面MP4](docs/results/rgb/media/task3-side.mp4) / [全体MP4](docs/results/rgb/media/task3-overview.mp4)
 
-### 評価結果
-
-学習・モデル選択に使わなかった4条件ずつの評価結果です。上の成功動画とは別の試行です。
-
-| タスク | 成功数／試行数 | 成功率 |
-|---|---:|---:|
-| Task 1 | 4／4 | 100% |
-| Task 2 | 4／4 | 100% |
-| Task 3 | 3／4 | 75% |
-| 合計 | 11／12 | 91.7% |
-
-[評価条件・モデルのハッシュ・各試行の結果](docs/results/evaluation-summary.json)
-
-透明水滴の深度には理想化した表面を使い、吸着は接触後に球体表示をスポンジへ追従させています。
-吸水・流体計算は行っていません。把持には独自のV溝パッドを使っています。
+水滴は評価時のseed 7300000、ペンは7300001、キャップは7300002の追加録画で成功を確認した映像です。追加録画は上の成功率へ加えていません。
 
 ## ライセンス
 
-自作コード・自作アセットは [Apache License 2.0](LICENSE) です。
-第三者のコード、ロボットモデル、学習元モデル等はそれぞれのライセンスに従います。
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) と licenses/ を参照してください。
-
-SO-101は使用するURDFと13メッシュに絞り、元のライセンス・出典を添付しています。
-本プロジェクトは独立した教育用シミュレーションであり、JAXA等の公式製品ではありません。
+自作コード・自作アセットは[Apache License 2.0](LICENSE)です。第三者のコード・ロボットモデル・基盤モデルの条件は[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)と`licenses/`を参照してください。
+独立した教育用シミュレーションであり、JAXA等の公式製品ではありません。

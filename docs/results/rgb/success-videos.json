@@ -1,0 +1,81 @@
+[
+  {
+    "task": "task1",
+    "seed": 7300000,
+    "success": true,
+    "reused_original_evaluation": true,
+    "additional_recording_excluded_from_success_rate": false,
+    "adapter_sha256": "4a2aa37146f053aa5b53639dd23295228467fa3e818b03945e32329d73454986",
+    "playback": "simulation time at 1x; GIF 10 fps",
+    "final": {
+      "time": 4.414,
+      "right_sponge_contact": true,
+      "right_holds_sponge": true,
+      "success": true
+    }
+  },
+  {
+    "task": "task2",
+    "seed": 7300001,
+    "success": true,
+    "reused_original_evaluation": false,
+    "additional_recording_excluded_from_success_rate": true,
+    "adapter_sha256": "4a2aa37146f053aa5b53639dd23295228467fa3e818b03945e32329d73454986",
+    "playback": "simulation time at 1x; GIF 10 fps",
+    "final": {
+      "success_metric_version": 2,
+      "physical_bilateral_contact": true,
+      "closing_grip_command": true,
+      "legacy_grip_angle_check": true,
+      "legacy_success": true,
+      "time": 4.211,
+      "bilateral_contact": true,
+      "stable_seconds": 0.6000000000000005,
+      "lift_required": false,
+      "success": true
+    }
+  },
+  {
+    "task": "task3",
+    "seed": 7300002,
+    "success": true,
+    "reused_original_evaluation": false,
+    "additional_recording_excluded_from_success_rate": true,
+    "adapter_sha256": "4a2aa37146f053aa5b53639dd23295228467fa3e818b03945e32329d73454986",
+    "playback": "simulation time at 1x; GIF 10 fps",
+    "final": {
+      "insertion_depth_m": 0.030958689696070157,
+      "lateral_error_m": 0.00018847980310824727,
+      "axis_error_degrees": 0.26789970566436444,
+      "axial_relative_speed_m_s": 0.0010725999961920221,
+      "object_pose_fresh": true,
+      "success_metric_version": 2,
+      "closing_grip_command": {
+        "left": true,
+        "right": true
+      },
+      "gripper_positions": [
+        -0.10271417096809027,
+        0.023859628535914296
+      ],
+      "legacy_grip_angle_check": true,
+      "legacy_success": true,
+      "time": 10.814,
+      "require_carry": false,
+      "contacts": {
+        "left": true,
+        "right": true
+      },
+      "grasp_seen": {
+        "left": true,
+        "right": true
+      },
+      "carried": {
+        "left": true,
+        "right": true
+      },
+      "stable_seconds": 0.6999999999999993,
+      "success": true
+    }
+  }
+]

@@ -12,7 +12,7 @@ CAMERAS = {
     'front': dict(eye=[-.08,0,.48], target=[.31,0,.28], fov=1.25),
     'side': dict(eye=[.37,-.50,.39], target=[.31,0,.28], fov=.95)
 }
-CHECKPOINT = ROOT/'artifacts/smolvla_one_policy'
+CHECKPOINT = ROOT/'artifacts/smolvla_rgb_only'
 DT = .1
 
 def case_from_seed(seed):

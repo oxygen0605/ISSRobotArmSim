@@ -1,0 +1,19 @@
+{
+  "dataset_repo": "oxygen65/ISSRobotArm",
+  "dataset_revision": "e96f1ede890c8f02d1800bae28c1456721621958",
+  "anonymous_downloaded_episodes": 180,
+  "verified_frames": 11079,
+  "input_and_teacher_action_values_match_original": true,
+  "unit_tests_passed": 43,
+  "ros_default_checkpoint": "artifacts/smolvla_rgb_only",
+  "ros_smoke_seed": 7300002,
+  "ros_smoke_position_jitter": true,
+  "ros_smoke_success": {
+    "task1": true,
+    "task2": true,
+    "task3": true
+  },
+  "training_smoke_optimizer_updates": 2,
+  "offline_inference_frames": 11,
+  "depth_preserved_branch": "depth-use"
+}

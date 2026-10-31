@@ -1,0 +1,3863 @@
+{
+  "checkpoint_steps": {
+    "10000": {
+      "tasks": {
+        "task1": {
+          "successes": 10,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 1.0,
+          "fresh": {
+            "count": 19,
+            "mean_ms": 604.2797546343584,
+            "median_ms": 363.63544105552137,
+            "p95_ms": 1950.4000135930205
+          },
+          "cached": {
+            "count": 107,
+            "mean_ms": 0.09146526186056783,
+            "median_ms": 0.0827109906822443,
+            "p95_ms": 0.14732562704011792
+          },
+          "failures": {}
+        },
+        "task2": {
+          "successes": 7,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.7,
+          "fresh": {
+            "count": 87,
+            "mean_ms": 441.34223926410976,
+            "median_ms": 369.30505197960883,
+            "p95_ms": 1091.6649610036989
+          },
+          "cached": {
+            "count": 737,
+            "mean_ms": 0.08934246438708324,
+            "median_ms": 0.07588998414576054,
+            "p95_ms": 0.16446600202471015
+          },
+          "failures": {
+            "ペンの安定保持未達": 1,
+            "ペンの把持未成立": 2
+          }
+        },
+        "task3": {
+          "successes": 4,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.4,
+          "fresh": {
+            "count": 172,
+            "mean_ms": 258.8342110887657,
+            "median_ms": 248.30933107296005,
+            "p95_ms": 364.42609364748927
+          },
+          "cached": {
+            "count": 1536,
+            "mean_ms": 0.06446858969866298,
+            "median_ms": 0.05911604966968298,
+            "p95_ms": 0.09159275214187801
+          },
+          "failures": {
+            "挿入・安定保持条件未達": 2,
+            "差し込み深さ不足": 2,
+            "位置・姿勢合わせ未達": 2
+          }
+        }
+      },
+      "total_successes": 21,
+      "total_valid": 30,
+      "total_errors": 0,
+      "fresh": {
+        "count": 278,
+        "mean_ms": 339.55962036438154,
+        "median_ms": 277.0677895168774,
+        "p95_ms": 638.0448355688712
+      }
+    },
+    "20000": {
+      "tasks": {
+        "task1": {
+          "successes": 10,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 1.0,
+          "fresh": {
+            "count": 18,
+            "mean_ms": 326.54339215433635,
+            "median_ms": 318.97907494567335,
+            "p95_ms": 386.31939313490835
+          },
+          "cached": {
+            "count": 100,
+            "mean_ms": 0.061044652247801416,
+            "median_ms": 0.05687802331522107,
+            "p95_ms": 0.08309461409226059
+          },
+          "failures": {}
+        },
+        "task2": {
+          "successes": 8,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.8,
+          "fresh": {
+            "count": 71,
+            "mean_ms": 262.93363148825324,
+            "median_ms": 293.5707839205861,
+            "p95_ms": 352.2060874965973
+          },
+          "cached": {
+            "count": 586,
+            "mean_ms": 0.06061267690199074,
+            "median_ms": 0.05669298116117716,
+            "p95_ms": 0.08514095679856837
+          },
+          "failures": {
+            "ペンの把持未成立": 2
+          }
+        },
+        "task3": {
+          "successes": 6,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.6,
+          "fresh": {
+            "count": 156,
+            "mean_ms": 265.0493284596357,
+            "median_ms": 284.08462001243606,
+            "p95_ms": 350.1984729373362
+          },
+          "cached": {
+            "count": 1370,
+            "mean_ms": 0.06274417617161125,
+            "median_ms": 0.05820300430059433,
+            "p95_ms": 0.08660694002173841
+          },
+          "failures": {
+            "位置・姿勢合わせ未達": 2,
+            "差し込み深さ不足": 1,
+            "挿入・安定保持条件未達": 1
+          }
+        }
+      },
+      "total_successes": 24,
+      "total_valid": 30,
+      "total_errors": 0,
+      "fresh": {
+        "count": 245,
+        "mean_ms": 268.9541393230498,
+        "median_ms": 292.9726259317249,
+        "p95_ms": 351.47965820506215
+      }
+    },
+    "30000": {
+      "tasks": {
+        "task1": {
+          "successes": 10,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 1.0,
+          "fresh": {
+            "count": 19,
+            "mean_ms": 318.26106573479547,
+            "median_ms": 310.45273691415787,
+            "p95_ms": 345.9304284653621
+          },
+          "cached": {
+            "count": 115,
+            "mean_ms": 0.06390647436289683,
+            "median_ms": 0.05834701005369425,
+            "p95_ms": 0.09146032389253378
+          },
+          "failures": {}
+        },
+        "task2": {
+          "successes": 8,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.8,
+          "fresh": {
+            "count": 72,
+            "mean_ms": 268.1856123931033,
+            "median_ms": 300.4385429667309,
+            "p95_ms": 327.315839153016
+          },
+          "cached": {
+            "count": 592,
+            "mean_ms": 0.06870650375620588,
+            "median_ms": 0.0618105405010283,
+            "p95_ms": 0.09861767757683981
+          },
+          "failures": {
+            "ペンの把持未成立": 2
+          }
+        },
+        "task3": {
+          "successes": 7,
+          "attempted": 10,
+          "valid_trials": 10,
+          "planned": 10,
+          "errors": 0,
+          "infrastructure_retries": 0,
+          "rate": 0.7,
+          "fresh": {
+            "count": 145,
+            "mean_ms": 262.65739040240516,
+            "median_ms": 294.12820003926754,
+            "p95_ms": 324.5743962470442
+          },
+          "cached": {
+            "count": 1280,
+            "mean_ms": 0.06345737483570701,
+            "median_ms": 0.059354526456445456,
+            "p95_ms": 0.0873443263117224
+          },
+          "failures": {
+            "ペンの保持を喪失": 1,
+            "差し込み深さ不足": 1,
+            "ペンの把持未成立": 1
+          }
+        }
+      },
+      "total_successes": 25,
+      "total_valid": 30,
+      "total_errors": 0,
+      "fresh": {
+        "count": 236,
+        "mean_ms": 268.8205336848021,
+        "median_ms": 299.0034449612722,
+        "p95_ms": 324.99017476220615
+      }
+    }
+  },
+  "paired": [
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "excluded_due_to_error": 0,
+      "both_success": 10,
+      "only_candidate_success": 0,
+      "only_30000_success": 0,
+      "both_failure": 0
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "excluded_due_to_error": 0,
+      "both_success": 6,
+      "only_candidate_success": 1,
+      "only_30000_success": 2,
+      "both_failure": 1
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "excluded_due_to_error": 0,
+      "both_success": 3,
+      "only_candidate_success": 1,
+      "only_30000_success": 4,
+      "both_failure": 2
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "excluded_due_to_error": 0,
+      "both_success": 10,
+      "only_candidate_success": 0,
+      "only_30000_success": 0,
+      "both_failure": 0
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "excluded_due_to_error": 0,
+      "both_success": 7,
+      "only_candidate_success": 1,
+      "only_30000_success": 1,
+      "both_failure": 1
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "excluded_due_to_error": 0,
+      "both_success": 5,
+      "only_candidate_success": 1,
+      "only_30000_success": 2,
+      "both_failure": 2
+    }
+  ],
+  "cases": [
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 475.49654357135296,
+        "median_ms": 475.49654357135296,
+        "p95_ms": 591.9779154122807
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.0908036335286769,
+        "median_ms": 0.0827109906822443,
+        "p95_ms": 0.11783599620684981
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.5140000000000002,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 289.5362615236081,
+        "median_ms": 289.5362615236081,
+        "p95_ms": 356.22552310233004
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.09088123786366648,
+        "median_ms": 0.07098400965332985,
+        "p95_ms": 0.1691112294793129
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.314,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 19,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 157.21069549908862,
+        "median_ms": 157.21069549908862,
+        "p95_ms": 160.81601404002868
+      },
+      "cached": {
+        "count": 17,
+        "mean_ms": 0.08098200401839088,
+        "median_ms": 0.07362395990639925,
+        "p95_ms": 0.12510053347796202
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 3.111,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 170.3169479733333,
+        "median_ms": 170.3169479733333,
+        "p95_ms": 189.2072738497518
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.06759290541098877,
+        "median_ms": 0.06358895916491747,
+        "p95_ms": 0.08182850433513522
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.5060000000000002,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300004,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 10,
+      "fresh": {
+        "count": 1,
+        "mean_ms": 151.5868209535256,
+        "median_ms": 151.5868209535256,
+        "p95_ms": 151.5868209535256
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.07341300240821308,
+        "median_ms": 0.06950006354600191,
+        "p95_ms": 0.09464581962674855
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.203,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 144.69491050112993,
+        "median_ms": 144.69491050112993,
+        "p95_ms": 148.902703425847
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.0688635976985097,
+        "median_ms": 0.06337999366223812,
+        "p95_ms": 0.08670302340760826
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.412,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300006,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 2299.7387679642998,
+        "median_ms": 2299.7387679642998,
+        "p95_ms": 3935.7322134834244
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.09961071720516139,
+        "median_ms": 0.09576394222676754,
+        "p95_ms": 0.12780149700120091
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.407,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 467.6110290456563,
+        "median_ms": 467.6110290456563,
+        "p95_ms": 539.3115801736712
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.110858649184758,
+        "median_ms": 0.0959980534389615,
+        "p95_ms": 0.18181797349825501
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.51,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 571.627619501669,
+        "median_ms": 571.627619501669,
+        "p95_ms": 573.8291117537301
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.10894365712172455,
+        "median_ms": 0.10106200352311134,
+        "p95_ms": 0.13710863422602415
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.307,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task1",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 1088.6314829695038,
+        "median_ms": 1088.6314829695038,
+        "p95_ms": 1647.512235591421
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.13386521540168259,
+        "median_ms": 0.12803892605006695,
+        "p95_ms": 0.1922172261402011
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.301,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 34,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 499.67022900818847,
+        "median_ms": 487.4480119906366,
+        "p95_ms": 565.8312195038889
+      },
+      "cached": {
+        "count": 30,
+        "mean_ms": 0.1437239620524148,
+        "median_ms": 0.13477401807904243,
+        "p95_ms": 0.20954778883606195
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.208,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6960000000000002,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 753.3252965076827,
+        "median_ms": 798.4299894887954,
+        "p95_ms": 858.0599166278262
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.12479567948471884,
+        "median_ms": 0.11941301636397839,
+        "p95_ms": 0.17199458088725803
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.139,
+        "bilateral_contact": true,
+        "stable_seconds": 0.601,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 31,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 516.5103642793838,
+        "median_ms": 544.0435175551102,
+        "p95_ms": 573.6299259122461
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.12170096548895042,
+        "median_ms": 0.10863598436117172,
+        "p95_ms": 0.182550901081413
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 10.646,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6010000000000009,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 31,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 525.3528814937454,
+        "median_ms": 564.1521145007573,
+        "p95_ms": 576.1057529074606
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.12859871128091105,
+        "median_ms": 0.1111980527639389,
+        "p95_ms": 0.23312940029427406
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 10.534,
+        "bilateral_contact": true,
+        "stable_seconds": 0.7000000000000011,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300004,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの安定保持未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 639.8322595399804,
+        "median_ms": 533.8830519467592,
+        "p95_ms": 1181.3676951162054
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.11761126095532544,
+        "median_ms": 0.10914797894656658,
+        "p95_ms": 0.1769601076375692
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 20.812,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 32,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 1120.9677445003763,
+        "median_ms": 1066.9308580108918,
+        "p95_ms": 1559.6328932850154
+      },
+      "cached": {
+        "count": 28,
+        "mean_ms": 0.12177783563467008,
+        "median_ms": 0.10063051013275981,
+        "p95_ms": 0.22399823646992434
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.051,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000001,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300006,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 244.17394055635668,
+        "median_ms": 218.45358901191503,
+        "p95_ms": 380.1807355834171
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06578860144751768,
+        "median_ms": 0.06154546281322837,
+        "p95_ms": 0.08910367032513022
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 20.812,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 30,
+      "fresh": {
+        "count": 3,
+        "mean_ms": 250.88653496156138,
+        "median_ms": 257.67136993817985,
+        "p95_ms": 341.33662631502375
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.06444720741085432,
+        "median_ms": 0.06330804899334908,
+        "p95_ms": 0.08085103472694755
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 3.809,
+        "bilateral_contact": true,
+        "stable_seconds": 0.601,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 248.01808677148074,
+        "median_ms": 237.7951985108666,
+        "p95_ms": 342.7434324577916
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.06401765256606298,
+        "median_ms": 0.057611032389104366,
+        "p95_ms": 0.10744179598987103
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.457,
+        "bilateral_contact": true,
+        "stable_seconds": 0.7000000000000011,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task2",
+      "seed": 7300009,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 265.43063994613476,
+        "median_ms": 273.50945852231234,
+        "p95_ms": 369.6043663308956
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06187872366151876,
+        "median_ms": 0.058824021834880114,
+        "p95_ms": 0.08096550009213387
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 28.146,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 168,
+      "fresh": {
+        "count": 17,
+        "mean_ms": 294.9578770682873,
+        "median_ms": 280.28725704643875,
+        "p95_ms": 381.3522306270897
+      },
+      "cached": {
+        "count": 151,
+        "mean_ms": 0.08480145676147859,
+        "median_ms": 0.08018896915018559,
+        "p95_ms": 0.10520603973418474
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.035125862681157666,
+        "lateral_error_m": 0.0005409571215247348,
+        "axis_error_degrees": 0.30694935030547665,
+        "axial_relative_speed_m_s": 0.0014714014048996702,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271418683637444,
+          0.02377132873625859
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 20.999,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6009999999999991,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300001,
+      "success": false,
+      "valid": true,
+      "failure": "挿入・安定保持条件未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 244.56850726273842,
+        "median_ms": 244.55306952586398,
+        "p95_ms": 361.7086324491538
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06295620955319868,
+        "median_ms": 0.058312027249485254,
+        "p95_ms": 0.08223337354138488
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.030633278571438733,
+        "lateral_error_m": 0.0021203268736189962,
+        "axis_error_degrees": 0.3008200959696248,
+        "axial_relative_speed_m_s": 0.0028883269844021736,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10022103445678261,
+          0.023669559719579437
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.81,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300002,
+      "success": false,
+      "valid": true,
+      "failure": "差し込み深さ不足",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 242.96665017027408,
+        "median_ms": 221.1360950022936,
+        "p95_ms": 357.5952475774102
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06064162783635159,
+        "median_ms": 0.05792401498183608,
+        "p95_ms": 0.07839585887268179
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.025317386443942033,
+        "lateral_error_m": 0.0013078561575153853,
+        "axis_error_degrees": 0.41030959751762924,
+        "axial_relative_speed_m_s": 0.001945978160453686,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10270618553234899,
+          0.02266649083438078
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 28.059,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 120,
+      "fresh": {
+        "count": 12,
+        "mean_ms": 226.52388908318244,
+        "median_ms": 230.5186790181324,
+        "p95_ms": 324.90410798345687
+      },
+      "cached": {
+        "count": 108,
+        "mean_ms": 0.061298761499562746,
+        "median_ms": 0.05835649790242314,
+        "p95_ms": 0.07730043143965304
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.036212763986955894,
+        "lateral_error_m": 0.0010924594044277346,
+        "axis_error_degrees": 1.0657382949585577,
+        "axial_relative_speed_m_s": 7.876305148458883e-05,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271420051178448,
+          0.02386221159132793
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 21.91,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300004,
+      "success": false,
+      "valid": true,
+      "failure": "差し込み深さ不足",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 273.1965213082731,
+        "median_ms": 255.2617349429056,
+        "p95_ms": 388.1340460618958
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06567532028485504,
+        "median_ms": 0.05998293636366725,
+        "p95_ms": 0.09507305803708724
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.009580921855860841,
+        "lateral_error_m": 0.002123548894623078,
+        "axis_error_degrees": 0.42108466884831514,
+        "axial_relative_speed_m_s": 0.002532434054044149,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10169959611926604,
+          0.023783408889780953
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.808,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 99,
+      "fresh": {
+        "count": 10,
+        "mean_ms": 260.60581610072404,
+        "median_ms": 264.85899853287265,
+        "p95_ms": 360.25550079648383
+      },
+      "cached": {
+        "count": 89,
+        "mean_ms": 0.06487852961787681,
+        "median_ms": 0.05917297676205635,
+        "p95_ms": 0.10198063682764764
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03249778052446594,
+        "lateral_error_m": 0.0013996994899095991,
+        "axis_error_degrees": 0.7729226836064181,
+        "axial_relative_speed_m_s": 0.0007214508226142149,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.1027142406768841,
+          0.02276727429683762
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 17.715,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300006,
+      "success": false,
+      "valid": true,
+      "failure": "位置・姿勢合わせ未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 262.40553515963256,
+        "median_ms": 229.67685153707862,
+        "p95_ms": 370.3950381197501
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06132135555769007,
+        "median_ms": 0.058075995184481144,
+        "p95_ms": 0.0813272316008806
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.0007237718302297363,
+        "lateral_error_m": 0.010163540786668755,
+        "axis_error_degrees": 11.619617296699456,
+        "axial_relative_speed_m_s": 4.232371529203239e-05,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.056228241169686284,
+          0.02377889877802612
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.811,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300007,
+      "success": false,
+      "valid": true,
+      "failure": "位置・姿勢合わせ未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 258.35077893570997,
+        "median_ms": 272.18957094009966,
+        "p95_ms": 342.6011846691836
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06069534703985685,
+        "median_ms": 0.05735596641898155,
+        "p95_ms": 0.08396518533118069
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.001971803560100257,
+        "lateral_error_m": 0.0109343611785843,
+        "axis_error_degrees": 5.413981107212221,
+        "axial_relative_speed_m_s": 0.003120441064474389,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271420219599078,
+          0.1595073273093894
+        ],
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 28.059,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300008,
+      "success": false,
+      "valid": true,
+      "failure": "挿入・安定保持条件未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 261.45882376586087,
+        "median_ms": 253.47017199965194,
+        "p95_ms": 352.6644041237887
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.0629578264326685,
+        "median_ms": 0.058206962421536446,
+        "p95_ms": 0.08001134265214199
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.029105520858336186,
+        "lateral_error_m": 0.0009002082449929563,
+        "axis_error_degrees": 0.6803252696650991,
+        "axial_relative_speed_m_s": 0.00419266830301515,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271415828065653,
+          0.023773584843700412
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.807,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 10000,
+      "task": "task3",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 121,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 255.53224885012384,
+        "median_ms": 281.11007099505514,
+        "p95_ms": 336.67746020946646
+      },
+      "cached": {
+        "count": 108,
+        "mean_ms": 0.05981198908692157,
+        "median_ms": 0.05721795605495572,
+        "p95_ms": 0.07808296359144148
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03483611199694925,
+        "lateral_error_m": 0.0011932266975728009,
+        "axis_error_degrees": 0.7848998286128862,
+        "axial_relative_speed_m_s": 0.000300152568707136,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271417697926018,
+          0.022668431653702872
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 12.907,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 475.43929395033047,
+        "median_ms": 475.43929395033047,
+        "p95_ms": 597.9000385443214
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.08480761898681521,
+        "median_ms": 0.07976556662470102,
+        "p95_ms": 0.10723083396442233
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.409,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 279.2296234401874,
+        "median_ms": 279.2296234401874,
+        "p95_ms": 325.05500127444975
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.05951377614918682,
+        "median_ms": 0.059244921430945396,
+        "p95_ms": 0.07087737321853638
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.306,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 15,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 338.7789300759323,
+        "median_ms": 338.7789300759323,
+        "p95_ms": 345.8002900064457
+      },
+      "cached": {
+        "count": 13,
+        "mean_ms": 0.06264330855069253,
+        "median_ms": 0.05831499584019184,
+        "p95_ms": 0.08590940851718187
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.709,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 318.1956859771162,
+        "median_ms": 318.1956859771162,
+        "p95_ms": 331.0272577102296
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.05636292255737565,
+        "median_ms": 0.056597054935991764,
+        "p95_ms": 0.0617565237917006
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 5.215,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300004,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 10,
+      "fresh": {
+        "count": 1,
+        "mean_ms": 292.9726259317249,
+        "median_ms": 292.9726259317249,
+        "p95_ms": 292.9726259317249
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.05573999240166611,
+        "median_ms": 0.05558494012802839,
+        "p95_ms": 0.06010141223669052
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.217,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 321.62078097462654,
+        "median_ms": 321.62078097462654,
+        "p95_ms": 338.65062326658517
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.05628840299323201,
+        "median_ms": 0.0536590232513845,
+        "p95_ms": 0.0706788501702249
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.409,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300006,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 296.51319148251787,
+        "median_ms": 296.51319148251787,
+        "p95_ms": 325.86600707727484
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.058366882149130106,
+        "median_ms": 0.056626449804753065,
+        "p95_ms": 0.067378010135144
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.416,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 306.4511379925534,
+        "median_ms": 306.4511379925534,
+        "p95_ms": 324.7435929835774
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.058959913440048695,
+        "median_ms": 0.05780853098258376,
+        "p95_ms": 0.07237592362798749
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.414,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 10,
+      "fresh": {
+        "count": 1,
+        "mean_ms": 305.4814700735733,
+        "median_ms": 305.4814700735733,
+        "p95_ms": 305.4814700735733
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.06002376580403911,
+        "median_ms": 0.05674303974956274,
+        "p95_ms": 0.07355939596891403
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.213,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task1",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 303.4348374931142,
+        "median_ms": 303.4348374931142,
+        "p95_ms": 310.4073394672014
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.056487120067079864,
+        "median_ms": 0.05384092219173908,
+        "p95_ms": 0.06894264370203017
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.313,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 333.2980602281168,
+        "median_ms": 330.1564059802331,
+        "p95_ms": 348.5239128000103
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.08067545272281458,
+        "median_ms": 0.08075300138443708,
+        "p95_ms": 0.09697936475276947
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 8.014,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6999999999999993,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 34,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 237.05745651386678,
+        "median_ms": 237.09693498676643,
+        "p95_ms": 304.8373915196862
+      },
+      "cached": {
+        "count": 30,
+        "mean_ms": 0.06006244414796432,
+        "median_ms": 0.055578479077667,
+        "p95_ms": 0.08076597005128859
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.536,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6999999999999993,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 30,
+      "fresh": {
+        "count": 3,
+        "mean_ms": 272.6798590350275,
+        "median_ms": 324.08448006026447,
+        "p95_ms": 346.1759439203888
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.05638969768942506,
+        "median_ms": 0.05536596290767193,
+        "p95_ms": 0.06675674812868237
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 3.839,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000001,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300003,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 253.3325735013932,
+        "median_ms": 246.97396799456328,
+        "p95_ms": 344.18089187238365
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06032138933531112,
+        "median_ms": 0.05709845572710037,
+        "p95_ms": 0.08510453044436872
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 20.808,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300004,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 243.83203627076,
+        "median_ms": 250.88260497432202,
+        "p95_ms": 312.7675740222912
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.05769161587773726,
+        "median_ms": 0.05420495290309191,
+        "p95_ms": 0.07126780692487954
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.366,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6999999999999993,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 31,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 249.2553852207493,
+        "median_ms": 254.36686049215496,
+        "p95_ms": 343.32654922036454
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.05995623629402231,
+        "median_ms": 0.057523022405803204,
+        "p95_ms": 0.07083471864461899
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 3.952,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000001,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300006,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 268.54893704294227,
+        "median_ms": 317.1973704593256,
+        "p95_ms": 360.2896716911346
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06005646363418136,
+        "median_ms": 0.05589844658970833,
+        "p95_ms": 0.08696755976416162
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 20.805,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 31,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 245.8208940224722,
+        "median_ms": 242.7551355212927,
+        "p95_ms": 334.68686423730105
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.057074681131376155,
+        "median_ms": 0.05585094913840294,
+        "p95_ms": 0.07405559299513698
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 3.906,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000001,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 32,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 262.9041574546136,
+        "median_ms": 248.66668693721294,
+        "p95_ms": 343.9626260078512
+      },
+      "cached": {
+        "count": 28,
+        "mean_ms": 0.061447295593097806,
+        "median_ms": 0.055943033657968044,
+        "p95_ms": 0.0916477001737803
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.308,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6959999999999997,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task2",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 280.98652220796794,
+        "median_ms": 290.38000846048817,
+        "p95_ms": 346.26895848778076
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.05633158384469049,
+        "median_ms": 0.05465594585984945,
+        "p95_ms": 0.06630059797316788
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.449,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6999999999999993,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300000,
+      "success": false,
+      "valid": true,
+      "failure": "位置・姿勢合わせ未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 302.2856164665427,
+        "median_ms": 311.97784654796124,
+        "p95_ms": 353.1450020847842
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.07984799837383132,
+        "median_ms": 0.07700244896113873,
+        "p95_ms": 0.09530892712064086
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.0028896859030603846,
+        "lateral_error_m": 0.05485698530510715,
+        "axis_error_degrees": 61.32743977910229,
+        "axial_relative_speed_m_s": 0.0026017284692070905,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          0.08259433468770445,
+          0.023560013414783743
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.829,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 121,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 261.1893192381383,
+        "median_ms": 257.95754499267787,
+        "p95_ms": 348.7289748387411
+      },
+      "cached": {
+        "count": 108,
+        "mean_ms": 0.0594116314055605,
+        "median_ms": 0.05688401870429516,
+        "p95_ms": 0.073680147761479
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03073773867329539,
+        "lateral_error_m": 0.00091370999957691,
+        "axis_error_degrees": 0.17815679035957244,
+        "axial_relative_speed_m_s": 0.00012026607354491447,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271417541124629,
+          0.022634729843147124
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 12.914,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 122,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 249.5893100813891,
+        "median_ms": 289.8399479454383,
+        "p95_ms": 346.5943484334275
+      },
+      "cached": {
+        "count": 109,
+        "mean_ms": 0.06088309113893214,
+        "median_ms": 0.0566339585930109,
+        "p95_ms": 0.08486462756991381
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03187089596347426,
+        "lateral_error_m": 0.0008365045492131687,
+        "axis_error_degrees": 0.05320594460180655,
+        "axial_relative_speed_m_s": 0.0005257556843155717,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271420012978535,
+          0.02282981202399188
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 22.198,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 132,
+      "fresh": {
+        "count": 14,
+        "mean_ms": 268.76962419399723,
+        "median_ms": 287.032462481875,
+        "p95_ms": 346.8817250977736
+      },
+      "cached": {
+        "count": 118,
+        "mean_ms": 0.06118380283084461,
+        "median_ms": 0.05734799196943641,
+        "p95_ms": 0.08190991939045489
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.036424465045507455,
+        "lateral_error_m": 0.0008262787498930224,
+        "axis_error_degrees": 0.09527115251343615,
+        "axial_relative_speed_m_s": 0.0007704126992008647,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271421956671879,
+          0.023414781556998637
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 14.008,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300004,
+      "success": false,
+      "valid": true,
+      "failure": "差し込み深さ不足",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 249.9520079989452,
+        "median_ms": 224.97643594397232,
+        "p95_ms": 349.3376101425383
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.05858702999022272,
+        "median_ms": 0.05653448170050979,
+        "p95_ms": 0.06910369265824556
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.022032037739505083,
+        "lateral_error_m": 0.0009299911006320256,
+        "axis_error_degrees": 0.11370205078075059,
+        "axial_relative_speed_m_s": 0.0003597003868737199,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.1027141315820332,
+          0.023686109212149333
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.809,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300005,
+      "success": false,
+      "valid": true,
+      "failure": "位置・姿勢合わせ未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 257.4544502364006,
+        "median_ms": 235.70150951854885,
+        "p95_ms": 350.5826981330756
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06078321667802002,
+        "median_ms": 0.05765596870332956,
+        "p95_ms": 0.0811851001344621
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.002073378135897201,
+        "lateral_error_m": 0.010355802685012213,
+        "axis_error_degrees": 9.405153610248709,
+        "axial_relative_speed_m_s": 0.0006988317698159523,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.05957949163642714,
+          0.022543028273029796
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.838,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300006,
+      "success": false,
+      "valid": true,
+      "failure": "挿入・安定保持条件未達",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 257.31620809528977,
+        "median_ms": 242.25766153540462,
+        "p95_ms": 343.06596993119456
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.05953969343358444,
+        "median_ms": 0.057126511819660664,
+        "p95_ms": 0.07844786741770801
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.04001226785730868,
+        "lateral_error_m": 0.0008397408990620656,
+        "axis_error_degrees": 0.11620034889497156,
+        "axial_relative_speed_m_s": 0.0007390812272236347,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.1027142188432348,
+          0.02315850386734584
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.809,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 120,
+      "fresh": {
+        "count": 12,
+        "mean_ms": 267.18419534154236,
+        "median_ms": 303.19143302040175,
+        "p95_ms": 352.4374671746045
+      },
+      "cached": {
+        "count": 108,
+        "mean_ms": 0.0588407996541786,
+        "median_ms": 0.056913006119430065,
+        "p95_ms": 0.07360192248597737
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03443298802290803,
+        "lateral_error_m": 0.0007192050926274629,
+        "axis_error_degrees": 0.283284212192875,
+        "axial_relative_speed_m_s": 0.0007324527375616903,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271422098254598,
+          0.023845381886597627
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 20.071,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 122,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 267.50902260223836,
+        "median_ms": 280.30980296898633,
+        "p95_ms": 355.9877964202314
+      },
+      "cached": {
+        "count": 109,
+        "mean_ms": 0.061081736263126955,
+        "median_ms": 0.056412070989608765,
+        "p95_ms": 0.0776522560045123
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03182007390781324,
+        "lateral_error_m": 0.00030724774307659843,
+        "axis_error_degrees": 0.17805329544256265,
+        "axial_relative_speed_m_s": 0.0005654341643347736,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.1027142226127959,
+          0.0226113036741484
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 13.007,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 20000,
+      "task": "task3",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 109,
+      "fresh": {
+        "count": 11,
+        "mean_ms": 265.52772963292557,
+        "median_ms": 294.08229794353247,
+        "p95_ms": 346.37125703739
+      },
+      "cached": {
+        "count": 98,
+        "mean_ms": 0.06222423422625478,
+        "median_ms": 0.05701748887076974,
+        "p95_ms": 0.08328625699505209
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.031594786843696016,
+        "lateral_error_m": 0.0006068150812346993,
+        "axis_error_degrees": 0.29984198777242155,
+        "axial_relative_speed_m_s": 0.0008474628944771125,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271424014126165,
+          0.023578557020028937
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.707,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300000,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 21,
+      "fresh": {
+        "count": 3,
+        "mean_ms": 397.0104909967631,
+        "median_ms": 316.6693700477481,
+        "p95_ms": 533.7680584867485
+      },
+      "cached": {
+        "count": 18,
+        "mean_ms": 0.08019381978859504,
+        "median_ms": 0.07801852189004421,
+        "p95_ms": 0.09757186635397372
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 4.414,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 309.29489195114,
+        "median_ms": 309.29489195114,
+        "p95_ms": 310.3369524178561
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.05548500404175785,
+        "median_ms": 0.055011012591421604,
+        "p95_ms": 0.06113317795097828
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 4.386,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 19,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 317.62091402197257,
+        "median_ms": 317.62091402197257,
+        "p95_ms": 321.9035063695628
+      },
+      "cached": {
+        "count": 17,
+        "mean_ms": 0.06719656726893257,
+        "median_ms": 0.05766795948147774,
+        "p95_ms": 0.12235697358846663
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 5.178,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 14,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 317.1255270135589,
+        "median_ms": 317.1255270135589,
+        "p95_ms": 318.25834892806597
+      },
+      "cached": {
+        "count": 12,
+        "mean_ms": 0.05763157969340682,
+        "median_ms": 0.058233970776200294,
+        "p95_ms": 0.06454194081015883
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.515,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300004,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 10,
+      "fresh": {
+        "count": 1,
+        "mean_ms": 303.3157530007884,
+        "median_ms": 303.3157530007884,
+        "p95_ms": 303.3157530007884
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.05700867364390028,
+        "median_ms": 0.05504803266376257,
+        "p95_ms": 0.062431092374026775
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.203,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 12,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 295.4524555243552,
+        "median_ms": 295.4524555243552,
+        "p95_ms": 315.7687859958969
+      },
+      "cached": {
+        "count": 10,
+        "mean_ms": 0.05964598385617137,
+        "median_ms": 0.056890014093369246,
+        "p95_ms": 0.06993371644057332
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.414,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300006,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 314.98323002597317,
+        "median_ms": 314.98323002597317,
+        "p95_ms": 320.15158082940616
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.059229448776353485,
+        "median_ms": 0.05572789814323187,
+        "p95_ms": 0.07976300548762083
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 4.609,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 13,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 289.81422749347985,
+        "median_ms": 289.81422749347985,
+        "p95_ms": 300.37060694303364
+      },
+      "cached": {
+        "count": 11,
+        "mean_ms": 0.05880789831280708,
+        "median_ms": 0.05876203067600727,
+        "p95_ms": 0.06594997830688953
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.503,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 10,
+      "fresh": {
+        "count": 1,
+        "mean_ms": 302.14130703825504,
+        "median_ms": 302.14130703825504,
+        "p95_ms": 302.14130703825504
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.05997013714578417,
+        "median_ms": 0.0568340765312314,
+        "p95_ms": 0.0748624326661229
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.218,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task1",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 11,
+      "fresh": {
+        "count": 2,
+        "mean_ms": 280.94461193541065,
+        "median_ms": 280.94461193541065,
+        "p95_ms": 287.0194868359249
+      },
+      "cached": {
+        "count": 9,
+        "mean_ms": 0.06942113395780325,
+        "median_ms": 0.06099406164139509,
+        "p95_ms": 0.10288201738148926
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "time": 2.32,
+        "right_sponge_contact": true,
+        "right_holds_sponge": true,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300000,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 310.09561915998347,
+        "median_ms": 318.65179305896163,
+        "p95_ms": 334.5079033751972
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.0853181169885728,
+        "median_ms": 0.08124503074213862,
+        "p95_ms": 0.11253400007262826
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 24.709,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300001,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 35,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 250.65910449484363,
+        "median_ms": 253.32069251453504,
+        "p95_ms": 303.2900745049119
+      },
+      "cached": {
+        "count": 31,
+        "mean_ms": 0.0584663507798987,
+        "median_ms": 0.05555304232984781,
+        "p95_ms": 0.07277849363163114
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.651,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6999999999999993,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 31,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 242.54660977749154,
+        "median_ms": 256.6180075518787,
+        "p95_ms": 316.26937706023455
+      },
+      "cached": {
+        "count": 27,
+        "mean_ms": 0.06137962487560731,
+        "median_ms": 0.057835946790874004,
+        "p95_ms": 0.08188729407265781
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.226,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000014,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 32,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 255.97575525171123,
+        "median_ms": 256.8916009622626,
+        "p95_ms": 316.1262348468881
+      },
+      "cached": {
+        "count": 28,
+        "mean_ms": 0.06640065527920212,
+        "median_ms": 0.054148025810718536,
+        "p95_ms": 0.07002194761298597
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.008,
+        "bilateral_contact": true,
+        "stable_seconds": 0.601,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300004,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 263.587749999715,
+        "median_ms": 292.3619659850374,
+        "p95_ms": 310.1853309199214
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.05921194779461828,
+        "median_ms": 0.05673093255609274,
+        "p95_ms": 0.07233545184135434
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.107,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6000000000000001,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 274.2017497657798,
+        "median_ms": 309.28086198400706,
+        "p95_ms": 330.7476659014355
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.06397573100724097,
+        "median_ms": 0.0611060531809926,
+        "p95_ms": 0.08779740892350672
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.107,
+        "bilateral_contact": true,
+        "stable_seconds": 0.7000000000000002,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300006,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 255.02490894868967,
+        "median_ms": 298.42193255899474,
+        "p95_ms": 322.7562970831059
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.06149971159175038,
+        "median_ms": 0.05866953870281577,
+        "p95_ms": 0.08456283248960966
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": false,
+        "closing_grip_command": false,
+        "legacy_grip_angle_check": false,
+        "legacy_success": false,
+        "time": 20.808,
+        "bilateral_contact": false,
+        "stable_seconds": 0.0,
+        "lift_required": false,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 33,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 220.4542465042323,
+        "median_ms": 212.08289748756215,
+        "p95_ms": 310.5023782933131
+      },
+      "cached": {
+        "count": 29,
+        "mean_ms": 0.060446070635627056,
+        "median_ms": 0.0565090449526906,
+        "p95_ms": 0.08014577906578775
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.108,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6009999999999995,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 35,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 241.38986223260872,
+        "median_ms": 241.6802140069194,
+        "p95_ms": 296.3942643487826
+      },
+      "cached": {
+        "count": 31,
+        "mean_ms": 0.061112459779026046,
+        "median_ms": 0.05814305040985346,
+        "p95_ms": 0.08151144720613956
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 4.309,
+        "bilateral_contact": true,
+        "stable_seconds": 0.7000000000000002,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task2",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 32,
+      "fresh": {
+        "count": 4,
+        "mean_ms": 252.9233045061119,
+        "median_ms": 272.76337251532823,
+        "p95_ms": 312.2921535919886
+      },
+      "cached": {
+        "count": 28,
+        "mean_ms": 0.06065182138367423,
+        "median_ms": 0.057607481721788645,
+        "p95_ms": 0.08300151093862948
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "success_metric_version": 2,
+        "physical_bilateral_contact": true,
+        "closing_grip_command": true,
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.289,
+        "bilateral_contact": true,
+        "stable_seconds": 0.6009999999999991,
+        "lift_required": false,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300000,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの保持を喪失",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 298.47258100053295,
+        "median_ms": 310.3988930233754,
+        "p95_ms": 324.33684656280093
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.08067448119012019,
+        "median_ms": 0.07791852112859488,
+        "p95_ms": 0.09671105071902271
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.24858136444426887,
+        "lateral_error_m": 1.4191145123742033,
+        "axis_error_degrees": 116.35554746912621,
+        "axial_relative_speed_m_s": 0.12142576146869626,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": false,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.17000084093099616,
+          0.02375706152531201
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.842,
+        "require_carry": false,
+        "contacts": {
+          "left": false,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300001,
+      "success": false,
+      "valid": true,
+      "failure": "差し込み深さ不足",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 262.092644860968,
+        "median_ms": 295.01897701993585,
+        "p95_ms": 323.3448530663736
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.0608870623788486,
+        "median_ms": 0.05825399421155453,
+        "p95_ms": 0.07703651790507136
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.023939107997276797,
+        "lateral_error_m": 0.0003732047767154514,
+        "axis_error_degrees": 0.14559650652467748,
+        "axial_relative_speed_m_s": 0.0016235223478562022,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271417677285365,
+          0.02384094999004329
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.811,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300002,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 139,
+      "fresh": {
+        "count": 14,
+        "mean_ms": 256.5561220149643,
+        "median_ms": 286.90183797152713,
+        "p95_ms": 321.8933704716619
+      },
+      "cached": {
+        "count": 125,
+        "mean_ms": 0.05915783066302538,
+        "median_ms": 0.05704199429601431,
+        "p95_ms": 0.0768189551308751
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03162932379418718,
+        "lateral_error_m": 0.0005509746570664189,
+        "axis_error_degrees": 0.13114525613987754,
+        "axial_relative_speed_m_s": 0.0002959404224069053,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271417276487385,
+          0.023865793190381738
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 14.71,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300003,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 108,
+      "fresh": {
+        "count": 11,
+        "mean_ms": 246.9947011188858,
+        "median_ms": 227.1390010137111,
+        "p95_ms": 321.82522502262145
+      },
+      "cached": {
+        "count": 97,
+        "mean_ms": 0.06123235540406913,
+        "median_ms": 0.05759997293353081,
+        "p95_ms": 0.08200916927307843
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.035790401460018544,
+        "lateral_error_m": 0.00012916744125266675,
+        "axis_error_degrees": 0.17208891118231698,
+        "axial_relative_speed_m_s": 0.0005858547843106569,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271421869909046,
+          0.023634692717193588
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.603,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300004,
+      "success": false,
+      "valid": true,
+      "failure": "ペンの把持未成立",
+      "control_steps": 200,
+      "fresh": {
+        "count": 20,
+        "mean_ms": 264.7770226467401,
+        "median_ms": 296.0358005366288,
+        "p95_ms": 324.51878843130544
+      },
+      "cached": {
+        "count": 180,
+        "mean_ms": 0.060464223820923105,
+        "median_ms": 0.05786604015156627,
+        "p95_ms": 0.07821209728717798
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": -0.02418883564541175,
+        "lateral_error_m": 1.202439679201288,
+        "axis_error_degrees": 57.05802395346418,
+        "axial_relative_speed_m_s": 0.022611759954138378,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": false,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.17000380616543195,
+          0.0230753940353589
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": false,
+        "time": 20.811,
+        "require_carry": false,
+        "contacts": {
+          "left": false,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": false,
+          "right": true
+        },
+        "carried": {
+          "left": false,
+          "right": true
+        },
+        "stable_seconds": 0.0,
+        "success": false
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300005,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 99,
+      "fresh": {
+        "count": 10,
+        "mean_ms": 262.35507254023105,
+        "median_ms": 305.4318590438925,
+        "p95_ms": 325.6791089428589
+      },
+      "cached": {
+        "count": 89,
+        "mean_ms": 0.06250023653500536,
+        "median_ms": 0.05871907342225313,
+        "p95_ms": 0.089809438213706
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.035552972947024176,
+        "lateral_error_m": 0.00039151564032655035,
+        "axis_error_degrees": 0.18129016910290585,
+        "axial_relative_speed_m_s": 0.0003750688784585845,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271421875572481,
+          0.02348248050336085
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 18.035,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300006,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 129,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 254.52848247144942,
+        "median_ms": 244.02180698234588,
+        "p95_ms": 324.0104152355343
+      },
+      "cached": {
+        "count": 116,
+        "mean_ms": 0.06054639053563105,
+        "median_ms": 0.05821051308885217,
+        "p95_ms": 0.07551177986897528
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03653482234637858,
+        "lateral_error_m": 0.0004662931222406616,
+        "axis_error_degrees": 0.11104261746663481,
+        "axial_relative_speed_m_s": 0.0014117889004399357,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271421812703516,
+          0.022612658099462307
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 13.71,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300007,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 121,
+      "fresh": {
+        "count": 13,
+        "mean_ms": 246.07024177944717,
+        "median_ms": 218.6861369991675,
+        "p95_ms": 319.47019123472273
+      },
+      "cached": {
+        "count": 108,
+        "mean_ms": 0.06060865901721021,
+        "median_ms": 0.05755102029070258,
+        "p95_ms": 0.0906088738702237
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03314777510685932,
+        "lateral_error_m": 0.0001524200230954971,
+        "axis_error_degrees": 0.0644595869893052,
+        "axial_relative_speed_m_s": 0.00010711274546805331,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271419997909273,
+          0.022673602391394383
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 12.909,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300008,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 118,
+      "fresh": {
+        "count": 12,
+        "mean_ms": 258.83926324119483,
+        "median_ms": 261.39792148023844,
+        "p95_ms": 321.6107854503207
+      },
+      "cached": {
+        "count": 106,
+        "mean_ms": 0.06047588496310812,
+        "median_ms": 0.05796097684651613,
+        "p95_ms": 0.0773407518863678
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03156751590198153,
+        "lateral_error_m": 1.5371499045039954e-05,
+        "axis_error_degrees": 0.11404322075666953,
+        "axial_relative_speed_m_s": 8.540473938132998e-05,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271419661783326,
+          0.02371992009136261
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 12.608,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6000000000000014,
+        "success": true
+      }
+    },
+    {
+      "checkpoint_step": 30000,
+      "task": "task3",
+      "seed": 7300009,
+      "success": true,
+      "valid": true,
+      "failure": null,
+      "control_steps": 111,
+      "fresh": {
+        "count": 12,
+        "mean_ms": 252.69532650903176,
+        "median_ms": 264.9750745622441,
+        "p95_ms": 324.7361096786335
+      },
+      "cached": {
+        "count": 99,
+        "mean_ms": 0.06044902039146183,
+        "median_ms": 0.059347948990762234,
+        "p95_ms": 0.0764720025472343
+      },
+      "infrastructure_retries": 0,
+      "final": {
+        "insertion_depth_m": 0.03305294966867874,
+        "lateral_error_m": 0.0003063296030891414,
+        "axis_error_degrees": 0.16698982745777963,
+        "axial_relative_speed_m_s": 0.0003854853638941849,
+        "object_pose_fresh": true,
+        "success_metric_version": 2,
+        "closing_grip_command": {
+          "left": true,
+          "right": true
+        },
+        "gripper_positions": [
+          -0.10271421903789017,
+          0.022682141752221656
+        ],
+        "legacy_grip_angle_check": true,
+        "legacy_success": true,
+        "time": 11.955,
+        "require_carry": false,
+        "contacts": {
+          "left": true,
+          "right": true
+        },
+        "grasp_seen": {
+          "left": true,
+          "right": true
+        },
+        "carried": {
+          "left": true,
+          "right": true
+        },
+        "stable_seconds": 0.6999999999999993,
+        "success": true
+      }
+    }
+  ],
+  "seed_conditions_identical": true,
+  "source_checkpoint_reference_unchanged": true,
+  "final_checkpoint": "artifacts/smolvla_rgb_only",
+  "depth_inputs": false,
+  "teacher_intervention": false
+}

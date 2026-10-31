@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "purpose": "Final frozen step_30000 evaluation requested after training",
+  "held_out_test_seeds": [
+    7300000,
+    7300001,
+    7300002,
+    7300003,
+    7300004,
+    7300005,
+    7300006,
+    7300007,
+    7300008,
+    7300009
+  ],
+  "development_seeds": [],
+  "tasks": [
+    "task1",
+    "task2",
+    "task3"
+  ],
+  "trials_per_task": 10,
+  "max_steps": 200,
+  "position_jitter_m": 0.005,
+  "checkpoint": "artifacts/smolvla_rgb_only",
+  "teacher_intervention": false,
+  "depth_inputs": false,
+  "checkpoint_selection_from_test": false,
+  "ordinary_failures_retried": false,
+  "infrastructure_retries": 2,
+  "record_first_case_per_task": true
+}

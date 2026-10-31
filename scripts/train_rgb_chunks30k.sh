@@ -4,8 +4,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 source /opt/ros/jazzy/setup.bash
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1
 exec .venv-vla/bin/python -u train_rgb_chunks.py \
-  --data datasets/rgb_only_balanced50_v1_selected \
-  --resume artifacts/smolvla_rgb_only_balanced50_selected \
+  --data "${RGB_DATASET_DIR:-datasets/rgb_only_balanced50_public}" \
+  --resume "${RGB_RESUME_CHECKPOINT:-artifacts/smolvla_rgb_initial}" \
   --output "${RGB_OUTPUT_DIR:-artifacts/smolvla_rgb_chunks50_steps30000_v1}" \
   --steps 30000 --batch-size 64 --micro-batch-size "${RGB_MICRO_BATCH_SIZE:-32}" \
   --lr 3e-4 --final-lr 3e-5 --warmup-steps 1000 \

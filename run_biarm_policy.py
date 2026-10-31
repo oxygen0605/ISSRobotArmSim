@@ -43,7 +43,8 @@ def run(policy,output,task,case,gui=False,record=False,max_steps=220,linger=0,in
 def main():
     p=argparse.ArgumentParser();p.add_argument('--task',choices=[*TASKS,'all'],default='task1');p.add_argument('--seed',type=int,default=3300000)
     p.add_argument('--checkpoint',type=Path,default=CHECKPOINT);p.add_argument('--output',type=Path);p.add_argument('--gui',action='store_true')
-    p.add_argument('--record',action='store_true');p.add_argument('--max-steps',type=int,default=220);p.add_argument('--linger',type=float,default=15)
+    p.add_argument('--record',action='store_true');p.add_argument('--max-steps',type=int,default=200);p.add_argument('--linger',type=float,default=15)
+    p.add_argument('--position-jitter',action='store_true',help='Use the same +/-5 mm scenarios as the reported evaluation')
     p.add_argument('--instruction')
     from rclpy.utilities import remove_ros_args
     a=p.parse_args(remove_ros_args(sys.argv)[1:])
@@ -55,6 +56,9 @@ def main():
             from iss_capture.task_scenes import load_scene
             from run_task_scene_preview import run as run_scene
             spec,case=load_scene(task,a.seed)
+            if a.position_jitter:
+                from iss_capture.scene_training_cases import scenario
+                spec,case,_=scenario(task,a.seed,True)
             if a.instruction:spec={**spec,'instruction':a.instruction}
             results.append(run_scene(policy,out/task,task,spec,case,max_steps=a.max_steps,
                                      gui=a.gui,record=a.record,linger=a.linger))

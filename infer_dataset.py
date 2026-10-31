@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay recorded RGB-D observations through the policy without moving a robot."""
+"""Replay recorded RGB and encoder observations without moving a robot."""
 import argparse, json, time
 from pathlib import Path
 import numpy as np
@@ -7,12 +7,13 @@ from iss_capture.config import ROOT
 from iss_capture.public_dataset import ensure_dataset, load_observation
 from iss_capture.policy_loader import load_policy
 from iss_capture.task_scene_observation import configure_observation
+from iss_capture.unified_config import CHECKPOINT
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--episode", default="validation_task1_4200000")
     parser.add_argument("--dataset", type=Path)
-    parser.add_argument("--checkpoint", type=Path, default=ROOT/"artifacts/smolvla_one_policy")
+    parser.add_argument("--checkpoint", type=Path, default=CHECKPOINT)
     parser.add_argument("--max-frames", type=int, default=10)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
@@ -24,7 +25,7 @@ def main():
     records = json.loads((episode/"samples.json").read_text())
     policy = load_policy(args.checkpoint)
     # Same nominal search regions as online inference; no evaluation_objects input.
-    configure_observation(policy, result["scene"], result["nominal_case"])
+    configure_observation(policy, result["scene"], result.get("nominal_case",result["case"]))
     predictions = []
     for record in records[:args.max_frames]:
         observation=load_observation(episode,record,include_depth=not getattr(policy,'rgb_only',False))

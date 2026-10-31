@@ -9,11 +9,12 @@ from ament_index_python.packages import get_package_prefix
 def start(context):
     root=Path(get_package_prefix('iss_capture_ros')).parents[2]
     def value(k):return LaunchConfiguration(k).perform(context)
-    args=['--task',value('task'),'--seed',value('seed'),'--checkpoint',value('checkpoint'),'--linger',value('linger')]
+    args=['--task',value('task'),'--seed',value('seed'),'--checkpoint',value('checkpoint'),'--linger',value('linger'),'--max-steps',value('max_steps')]
     if value('gui').lower()=='true':args+=['--gui']
     if value('record').lower()=='true':args+=['--record']
+    if value('position_jitter').lower()=='true':args+=['--position-jitter']
     return [Node(package='iss_capture_ros',executable='one_policy',name='biarm_one_policy',arguments=args,output='screen')]
 def generate_launch_description():
     root=Path(get_package_prefix('iss_capture_ros')).parents[2]
-    values=dict(task='task1',seed='3300000',checkpoint=str(root/'artifacts/smolvla_one_policy'),gui='true',record='false',linger='15')
+    values=dict(task='task1',seed='7300000',checkpoint=str(root/'artifacts/smolvla_rgb_only'),gui='true',record='false',linger='15',max_steps='200',position_jitter='false')
     return LaunchDescription([DeclareLaunchArgument(k,default_value=v) for k,v in values.items()]+[OpaqueFunction(function=start)])

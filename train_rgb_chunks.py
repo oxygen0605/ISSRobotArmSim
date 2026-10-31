@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from peft import PeftModel
 from iss_capture.config import ROOT,URDF,JOINTS
-from iss_capture.public_dataset import ensure_dataset,dataset_provenance
+from iss_capture.public_dataset import ensure_dataset,dataset_provenance,DEFAULT_DIRECTORY
 from iss_capture.vla_policy import load_base,new_adapter,base_model,make_batch,training_loss,BASE_REVISION,BASE_ID,PROCESSOR_REVISION
 from iss_capture.rgb_joint_policy import VARIANT,load_demonstrations,observations,action_target,decode_action
 from iss_capture.rgb_training_schedule import learning_rate,batch_layout,task_index,attach_future_targets,masked_mean
@@ -37,7 +37,7 @@ def endpoint_actions(velocity, bias, scale):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--data",type=Path,default=ROOT/"datasets/task_scenes_v1")
+    p.add_argument("--data",type=Path,default=DEFAULT_DIRECTORY)
     p.add_argument("--output",type=Path,required=True);p.add_argument("--resume",type=Path)
     p.add_argument("--extra-data",type=Path,action="append",default=[])
     p.add_argument("--steps",type=int,default=30000);p.add_argument("--batch-size",type=int,default=64,help="Effective batch per optimizer update")

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "train_seed_range": [
+    8100000,
+    8100159
+  ],
+  "validation_seed_range": [
+    8200000,
+    8200159
+  ],
+  "development_seeds": [
+    8300000,
+    8300001,
+    8300002,
+    8300003,
+    8300004,
+    8300005
+  ],
+  "held_out_test_seeds": [
+    8400000,
+    8400001,
+    8400002,
+    8400003,
+    8400004,
+    8400005,
+    8400006,
+    8400007,
+    8400008,
+    8400009
+  ],
+  "targets": {
+    "train": {
+      "task1": 50,
+      "task2": 50,
+      "task3": 50
+    },
+    "validation": {
+      "task1": 10,
+      "task2": 10,
+      "task3": 10
+    }
+  },
+  "position_jitter_m": 0.005,
+  "input_modalities": [
+    "RGB3",
+    "joint_position12",
+    "joint_velocity12",
+    "language"
+  ],
+  "teacher_truth_is_label_only": true
+}

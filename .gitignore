@@ -15,7 +15,8 @@ __pycache__/
 # Training data and intermediate checkpoints
 datasets/
 artifacts/*
-!artifacts/smolvla_one_policy/
+!artifacts/smolvla_rgb_only/
+!artifacts/smolvla_rgb_initial/
 # Local configuration and credentials
 .env
 .env.*
@@ -26,3 +27,6 @@ artifacts/*
 # Locally generated collection status and seed manifest
 progress/
 data_splits/task_scene_cases_v1.json
+
+# Colcon logs when invoked from the project root
+log/
