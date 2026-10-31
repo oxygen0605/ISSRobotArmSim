@@ -1,5 +1,7 @@
 # ISSRobotArmSim
 
+このブランチは深度あり版です。現在のRGB版は [main](https://github.com/oxygen0605/ISSRobotArmSim/tree/main) を参照してください。
+
 ISS船内をイメージした環境で、SO-101 × 2の双腕ロボットをSmolVLAで動かすシミュレーションです。
 
 - [概要](#概要)
@@ -37,7 +39,7 @@ SmolVLAと学習した共有出力部が手先の位置・向き・指の開閉�
 CUDAを使えるNVIDIA GPUとドライバーが必要です。初回セットアップにはインターネット接続を使います。
 
 ~~~bash
-git clone https://github.com/oxygen0605/ISSRobotArmSim.git
+git clone --branch depth-use https://github.com/oxygen0605/ISSRobotArmSim.git
 cd ISSRobotArmSim
 
 # ROS 2・Gazebo・ビルドツールなど
