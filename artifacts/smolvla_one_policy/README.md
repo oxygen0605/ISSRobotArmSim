@@ -17,4 +17,4 @@ Training-path metadata has been made relative for publication; tensor bytes are
 unchanged from the evaluated final checkpoint.
 
 Dataset: https://huggingface.co/datasets/oxygen65/ISSRobotArm
-Pinned revision: 027381e8d8b48bd7a05c6d39ca51fb0bf2bb229a
+Pinned revision: f9df1f800ea838a9d1baf21ffd4d9d87e1355b64

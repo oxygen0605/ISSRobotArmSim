@@ -482,7 +482,7 @@
   "training_dataset": {
     "repo_id": "oxygen65/ISSRobotArm",
     "repo_type": "dataset",
-    "revision": "027381e8d8b48bd7a05c6d39ca51fb0bf2bb229a",
+    "revision": "f9df1f800ea838a9d1baf21ffd4d9d87e1355b64",
     "manifest_sha256": "2580e72ab8f21722e83fe4d04cf306223499dacfa46106fd9beec74c7331b7ac",
     "checksums_sha256": "a6306005191981ea8b0df434789f176e7cc647aa9042d7eb8f6ea68789f761a3",
     "episode_count": 32,
