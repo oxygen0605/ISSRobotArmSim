@@ -1,7 +1,7 @@
 {
   "repo_id": "oxygen65/ISSRobotArm",
   "repo_type": "dataset",
-  "revision": "e96f1ede890c8f02d1800bae28c1456721621958",
+  "revision": "f9df1f800ea838a9d1baf21ffd4d9d87e1355b64",
   "episode_count": 180,
   "url": "https://huggingface.co/datasets/oxygen65/ISSRobotArm",
   "format": "issrobotarm-rgb-episodes-v2",
@@ -10,5 +10,5 @@
   "selection_manifest_path": "rgb_only_balanced50_v1/metadata/selection_manifest.json",
   "manifest_sha256": "2a70d7696f580ef5d001e2641ac52e9491f9032298d95381c717da5e25cf0e7b",
   "checksums_sha256": "3d3bbe3c2e6ba72c5935398311a5abdbe1d5a15726691dd1332be551820a2651",
-  "selection_manifest_sha256": "893883882acbfec15b117eef96ba7106d71e7290be0fbb83e2d9db936fc187cb"
+  "selection_manifest_sha256": "05d8d4af5fabc9e6bb4332812f8cf0524b074660ab102d89d3ae786ccf8e82f2"
 }
